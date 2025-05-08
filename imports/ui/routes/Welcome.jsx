@@ -11,10 +11,6 @@ import { contextApp } from '../../../client/main';
 
 export const Welcome = () => {
 
-    const context = useContext(contextApp);
-
-    console.log("Context", context);
-
     const navigate = useNavigate();
 
     const user = useTracker(() => Meteor.user());

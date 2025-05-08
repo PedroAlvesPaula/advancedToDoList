@@ -1,34 +1,18 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import { useState } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useNavigate } from 'react-router-dom'
 
 import './FormLogin.css';
-import { contextApp } from '../../../../client/main';
 
 export const LoginForm = () => {
     const navigate = useNavigate();
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
-    const context = useContext(contextApp);
-
-    console.log("context Welcome", context);
-
-    useEffect(() => {
-    console.log("useEffect ",Meteor.user)
-    if (!context.user){
-        context.alteraUsuario(Meteor.user());
-    }
-    }, []);
 
     const submit = (e) => {
         e.preventDefault();
-        Meteor.loginWithPassword(email, password, (error, r) => {
-            console.log("login with password", Meteor.user(), r);
-            if (!error){
-                context.alteraUsuario(Meteor.user());
-            }
-        });
+        Meteor.loginWithPassword(email, password);
         navigate('/welcome');
     }
 
