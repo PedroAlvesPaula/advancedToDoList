@@ -5,6 +5,7 @@ import { Meteor } from 'meteor/meteor';
 import { App } from '../imports/ui/App';
 import { Tasks } from '../imports/ui/routes/Tasks';
 import { Welcome } from '../imports/ui/routes/Welcome';
+import { AddTask } from '../imports/ui/routes/AddTask';
 
 Meteor.startup(() => {
 
@@ -23,6 +24,10 @@ Meteor.startup(() => {
     {
       path:"/tasks",
       element: <Tasks />
+    },
+    {
+      path:"/addTask",
+      element: <AddTask />
     },
   ]);
 

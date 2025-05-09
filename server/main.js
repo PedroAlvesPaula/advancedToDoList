@@ -2,6 +2,9 @@ import { Meteor } from 'meteor/meteor';
 import { TasksCollection } from '../imports/api/tasksCollection';
 import { Accounts } from 'meteor/accounts-base';
 
+import '../imports/api/tasksMethods';
+import '../imports/api/TasksPublication';
+
 const USER = 'dev';
 const PASSWORD = '123';
 

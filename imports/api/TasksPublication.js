@@ -6,6 +6,5 @@ Meteor.publish('tasks', function () {
     if (!userId){
         return this.ready();
     }
-
     return TasksCollection.find({ userId });
 });

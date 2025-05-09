@@ -4,7 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useNavigate } from 'react-router-dom';
 
-import { ToolbarWelcome } from '../components/welcome/ToolbarWelcome';
+import { ToolbarApplication } from '../components/toolbar/ToolbarApplication';
 import { CardsWelcome } from '../components/welcome/CardsWelcome';
 
 export const Welcome = () => {
@@ -33,7 +33,7 @@ export const Welcome = () => {
         <>
             { user ? (
                 <>
-                    <ToolbarWelcome 
+                    <ToolbarApplication 
                         actionButton1={handleClickTarefas}
                         actionButton2={logout}
                         textButton1={'Tarefas'}

@@ -9,8 +9,7 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
-export const ToolbarWelcome = ({ actionButton1, actionButton2, textButton1, textButton2, textToolbar }) => {
-
+export const ToolbarApplication = ({ actionButton1, actionButton2, textButton1, textButton2, textToolbar }) => {
     return (
         <>
             <Box sx={{ 
