@@ -5,11 +5,12 @@ import TextField from '@mui/material/TextField';
 import { Button, List, ListItem } from '@mui/material';
 
 export const FormTask = ({
-                                formInformation, 
-                                handleSubmit, 
-                                textHandleSunmit, 
-                                returnPage
-                            }) => {
+                            formInformation, 
+                            handleSubmit, 
+                            textHandleSunmit, 
+                            returnPage
+                        }) => {
+
   return (
     <div    style={{
             display: 'flex',
@@ -42,19 +43,18 @@ export const FormTask = ({
                     backgroundColor: 'background.paper',
                 }}
             >
-                {formInformation.map((element, index) => (
-                    <>    
-                        <ListItem key={index}>
-                            <TextField
-                                id="standard-helperText"
-                                label={element.label}
-                                helperText={element.helperText}
-                                variant="standard"
-                                sx={{width: '100%'}}
-                                onChange={(e) => element.set(e.target.value)}
-                            />
-                        </ListItem>
-                    </>
+                {formInformation.map((element, index) => (  
+                    <ListItem key={index}>
+                        <TextField
+                            id="standard-helperText"
+                            label={element.label}
+                            helperText={element.helperText}
+                            variant="standard"
+                            sx={{width: '100%'}}
+                            onChange={(e) => element.set(e.target.value)}
+                            value={element.text}
+                        />
+                    </ListItem>
                 ))}
             <Button 
                 variant='contained' 
@@ -62,7 +62,7 @@ export const FormTask = ({
                 sx={{letterSpacing: '2px'}}
                 onClick={(e) => handleSubmit(e)}
             >
-                Enviar
+                {textHandleSunmit}
             </Button>
             <Button 
                 variant='contained' 

@@ -8,11 +8,14 @@ Meteor.methods({
     'tasks.updateTask'({ task }) {
         return TasksCollection.updateAsync(task._id, {
             $set: {
-                name: task.title,
+                title: task.title,
                 description: task.description,
-                createdAt: task.CreatedAt,
                 updateAt: new Date(),
+                isPrivate: task.isPrivate,
             }
         })
+    },
+    'tasks.delete'({_id}){
+        return TasksCollection.removeAsync(_id);
     }
 })

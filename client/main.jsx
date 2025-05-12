@@ -1,5 +1,5 @@
 import React from 'react';
-import { createBrowserRouter, RouterProvider} from 'react-router-dom'; 
+import { createBrowserRouter, RouterProvider, Routes, Route} from 'react-router-dom'; 
 import { createRoot } from 'react-dom/client';
 import { Meteor } from 'meteor/meteor';
 import { App } from '../imports/ui/App';
@@ -12,7 +12,7 @@ Meteor.startup(() => {
 
   const container = document.getElementById('react-target');
   const root = createRoot(container);
-  
+
   const router = createBrowserRouter([
     {
       path:"/",
@@ -31,7 +31,7 @@ Meteor.startup(() => {
       element: <AddTask />
     },
     {
-      path:"/editTask",
+      path:"/editTask/:id",
       element: <EditTask />
     },
   ]);

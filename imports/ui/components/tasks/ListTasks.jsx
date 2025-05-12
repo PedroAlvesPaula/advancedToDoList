@@ -11,7 +11,6 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 export const ListTasks = ({ tasks, handleEdit, handleDelete }) => {
-  console.log(tasks);
   return (
     
     <>
@@ -24,9 +23,8 @@ export const ListTasks = ({ tasks, handleEdit, handleDelete }) => {
           borderRadius: '8px'
         }}>
           {tasks.map((task, index) => (
-            <>
-              <ListItem 
-                key={index} 
+            <div key={index}>
+              <ListItem  
                 alignItems="flex-start"
               >
                 <ListItemAvatar>
@@ -47,20 +45,20 @@ export const ListTasks = ({ tasks, handleEdit, handleDelete }) => {
                   }
                 />
                 <EditIcon
-                  onClick={handleEdit}
+                  onClick={() => handleEdit(task._id)}
                   sx={{
                     marginRight: '10px'
                   }}
                 ></EditIcon>
                 <DeleteIcon
-                  onClick={handleDelete}
+                  onClick={() => handleDelete(task._id)}
                   sx={{
                     marginLeft: '10px'
                   }}
                 ></DeleteIcon>
               </ListItem>
               <Divider variant='inset' component='li'/>
-            </>
+            </div>
           ))}
         </List>
       </div>

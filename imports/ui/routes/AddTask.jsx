@@ -40,17 +40,20 @@ export const AddTask = () => {
         {
             label:'Titulo da tarefa',
             helperText: 'de um título a tarefa',
-            set: setTaskTitle
+            set: setTaskTitle,
+            text: taskTitle
         },
         {
             label:'Descrição',
             helperText: 'Dê uma pequena descrição sobre',
-            set: settaskDescription
+            set: settaskDescription,
+            text: taskDescription
         },
         {
             label:'Tarefa pessoal?',
             helperText: 'Responda com SIM ou NÃO',
-            set: settaskPrivate
+            set: settaskPrivate,
+            text: taskPrivate
         },
     ]
   return (
@@ -58,6 +61,7 @@ export const AddTask = () => {
         <FormTask 
             formInformation={formData} 
             handleSubmit={insertTask}
+            textHandleSunmit={'Adicionar'}
             returnPage={returnPage}
         />
     </>

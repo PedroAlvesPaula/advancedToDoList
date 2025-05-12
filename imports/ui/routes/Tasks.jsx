@@ -1,29 +1,30 @@
 import React, { useState } from 'react'
 import { Meteor } from 'meteor/meteor'
 import { useTracker } from "meteor/react-meteor-data";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { TasksCollection } from '/imports/api/tasksCollection';
 
 import { ToolbarApplication } from '../components/toolbar/ToolbarApplication';
 import { ListTasks } from '../components/tasks/ListTasks';
 
 export const Tasks = () => {
-
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const user = useTracker(() => Meteor.user());
 
   const tasks = useTracker(() => {
     if (!user) return [];
-    return TasksCollection.find({sort: {createdAt: -1}}).fetch();
+    Meteor.subscribe('tasks');
+    return TasksCollection.find({}, {sort: {createdAt: -1}}).fetch();
   });
 
-  const edit = () => {
-    navigate('/editTask');
+  const edit = (_id) => {
+    navigate(`/editTask/${_id}`);
   }
 
-  const deleteTask = () => {
-    console.log('Excluiu');
+  const deleteTask = (_id) => {
+    Meteor.callAsync('tasks.delete', {_id});
   }
 
   const addTask = () => {
