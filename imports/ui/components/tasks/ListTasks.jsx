@@ -6,30 +6,14 @@ import Divider from '@mui/material/Divider';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Typography from '@mui/material/Typography';
-import AssignmentIcon from '@mui/icons-material/Assignment'
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 
-export const ListTasks = () => {
-
-  const tasks = [
-    {
-      title: 'Task 1',
-      text: 'Descrição da task',
-    },
-    {
-      title: 'Task 2',
-      text: 'Descrição da task'
-    },
-    {
-      title: 'Task 3',
-      text: 'Descrição da task'
-    },
-    {
-      title: 'Task 4',
-      text: 'Descrição da task'
-    }
-  ]
-
+export const ListTasks = ({ tasks, handleEdit, handleDelete }) => {
+  console.log(tasks);
   return (
+    
     <>
       <div style={{width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxSizing: 'border-box'}}>
         <List sx={{ 
@@ -57,11 +41,23 @@ export const ListTasks = () => {
                         variant="body2"
                         sx={{ color: 'text.primary', display: 'inline' }}
                       >
-                        {task.text}
+                        {task.description}
                       </Typography>
                     </React.Fragment>
                   }
                 />
+                <EditIcon
+                  onClick={handleEdit}
+                  sx={{
+                    marginRight: '10px'
+                  }}
+                ></EditIcon>
+                <DeleteIcon
+                  onClick={handleDelete}
+                  sx={{
+                    marginLeft: '10px'
+                  }}
+                ></DeleteIcon>
               </ListItem>
               <Divider variant='inset' component='li'/>
             </>

@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Meteor } from 'meteor/meteor'
 import { useTracker } from "meteor/react-meteor-data";
 import { useNavigate } from 'react-router-dom';
+import { TasksCollection } from '/imports/api/tasksCollection';
 
 import { ToolbarApplication } from '../components/toolbar/ToolbarApplication';
 import { ListTasks } from '../components/tasks/ListTasks';
@@ -12,14 +13,29 @@ export const Tasks = () => {
 
   const user = useTracker(() => Meteor.user());
 
+  const tasks = useTracker(() => {
+    if (!user) return [];
+    return TasksCollection.find({sort: {createdAt: -1}}).fetch();
+  });
+
+  const edit = () => {
+    navigate('/editTask');
+  }
+
+  const deleteTask = () => {
+    console.log('Excluiu');
+  }
+
   const addTask = () => {
     navigate('/addTask');
   }
 
   const logout = () => {
     Meteor.logout();
-    navigate('/')
+    navigate('/');
   }
+
+  console.log('Tasks: ', tasks);
 
   return (
     <>
@@ -32,7 +48,11 @@ export const Tasks = () => {
             textButton2={'Sair'}
             textToolbar={`${user?.username}, estas são suas tarefas`}
           />
-          <ListTasks />
+          <ListTasks 
+            tasks={tasks} 
+            handleEdit={edit}
+            handleDelete={deleteTask}
+            />
         </>
       ) : (
         <h1>Usuário não encontrado</h1>

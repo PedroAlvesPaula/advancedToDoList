@@ -4,7 +4,12 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Button, List, ListItem } from '@mui/material';
 
-export const FormAddTask = ({ formInformation, handleSubmit, returnPage}) => {
+export const FormTask = ({
+                                formInformation, 
+                                handleSubmit, 
+                                textHandleSunmit, 
+                                returnPage
+                            }) => {
   return (
     <div    style={{
             display: 'flex',
@@ -19,7 +24,7 @@ export const FormAddTask = ({ formInformation, handleSubmit, returnPage}) => {
         <Box
             component="form"
             sx={{
-                '& > :not(style)': { m: 1, width: '50vw' }, 
+                '& > :not(style)': { m: 1, width: '80vw' }, 
                 justifyContent: 'center',
             }}
             noValidate
