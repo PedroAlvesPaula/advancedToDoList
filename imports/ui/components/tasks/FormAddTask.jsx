@@ -17,7 +17,11 @@ export const FormAddTask = ({
 
     const handleSetValue = (e) => {
         setValue(e.target.value);
-        handleSelect(e);
+        if (e.target.value === 'Pessoal'){
+            handleSelect(true);
+        } else {
+            handleSelect(false);
+        }
     }
 
   return (
@@ -78,8 +82,8 @@ export const FormAddTask = ({
                                 onChange={(e) => handleSetValue(e)}
                                 sx={{width: '100%'}}
                             >
-                                <MenuItem value={'Pessoal'}>{valuesSelect[0]}</MenuItem>
-                                <MenuItem value={'Pública'}>{valuesSelect[1]}</MenuItem>
+                                <MenuItem value={'Pessoal'}>Pessoal</MenuItem>
+                                <MenuItem value={'Pública'}>Pública</MenuItem>
                             </Select>
                         </FormControl>
                     </Box>

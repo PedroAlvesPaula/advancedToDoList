@@ -14,8 +14,8 @@ export const AddTask = () => {
     const [taskDescription, settaskDescription] = useState('');
     const [taskPrivate, settaskPrivate] = useState('Pública');
 
-    const handleSetTaskPrivate = (e) => {
-        settaskPrivate(e.value.target);
+    const handleSetTaskPrivate = (value) => {
+        settaskPrivate(value);
     }
 
     const insertTask = async (e) => {
