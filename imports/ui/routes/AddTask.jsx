@@ -12,7 +12,7 @@ export const AddTask = () => {
 
     const [taskTitle, setTaskTitle] = useState('');
     const [taskDescription, settaskDescription] = useState('');
-    const [taskPrivate, settaskPrivate] = useState('Pública');
+    const [taskPrivate, settaskPrivate] = useState(false);
 
     const handleSetTaskPrivate = (value) => {
         settaskPrivate(value);
