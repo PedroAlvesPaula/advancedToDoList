@@ -8,8 +8,8 @@ import '../imports/api/TasksPublication';
 const USER = 'dev';
 const PASSWORD = '123';
 
-const insertTask = (taskText, isChecked, user) => {
-  TasksCollection.insertAsync({ text : taskText, createdAt: new Date(), isChecked: isChecked, userId: user._id});
+const insertTask = (task, user) => {
+  TasksCollection.insertAsync({ title: task.title, description : task.description, isPrivate: task.isPrivate, createdAt: new Date(), isChecked: task.isChecked, owner: task.owner, userId: user._id});
 }
 
 Meteor.startup(async () => {
@@ -22,11 +22,11 @@ Meteor.startup(async () => {
     const user = Accounts.findUserByUsername(USER);
 
     const tasks = [
-      {taskText: "task", isChecked: false}
+      {title: "task", isChecked: false, description: 'uma des', isPrivate: false, owner: 'dev', userId: user._id}
     ]
     
-    tasks.map(({ taskText, isChecked }) => {
-      insertTask(taskText, isChecked, user);
+    tasks.map((task) => {
+      insertTask(task, user);
     })
   }
 });

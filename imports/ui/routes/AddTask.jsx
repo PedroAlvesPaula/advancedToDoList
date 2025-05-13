@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useNavigate } from 'react-router-dom';
 
-import { FormTask } from '../components/tasks/FormAddTask';
+import { FormAddTask } from '../components/tasks/FormAddTask';
 
 export const AddTask = () => {
 
@@ -59,7 +59,7 @@ export const AddTask = () => {
     ]
   return (
     <>
-        <FormTask 
+        <FormAddTask 
             formInformation={formData} 
             handleSubmit={insertTask}
             textHandleSunmit={'Adicionar'}
