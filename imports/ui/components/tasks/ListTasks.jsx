@@ -39,7 +39,7 @@ export const ListTasks = ({ tasks, handleEdit, handleDelete }) => {
                         variant="body2"
                         sx={{ color: 'text.primary', display: 'inline' }}
                       >
-                        {task.description}
+                        {task.owner}
                       </Typography>
                     </React.Fragment>
                   }
