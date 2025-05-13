@@ -12,7 +12,11 @@ export const AddTask = () => {
 
     const [taskTitle, setTaskTitle] = useState('');
     const [taskDescription, settaskDescription] = useState('');
-    const [taskPrivate, settaskPrivate] = useState(false);
+    const [taskPrivate, settaskPrivate] = useState('Pública');
+
+    const handleSetTaskPrivate = (e) => {
+        settaskPrivate(e.value.target);
+    }
 
     const insertTask = async (e) => {
         e.preventDefault();
@@ -50,20 +54,16 @@ export const AddTask = () => {
             set: settaskDescription,
             text: taskDescription
         },
-        {
-            label:'Tarefa pessoal?',
-            helperText: 'Responda com SIM ou NÃO',
-            set: settaskPrivate,
-            text: taskPrivate
-        },
     ]
   return (
     <>
         <FormAddTask 
             formInformation={formData} 
             handleSubmit={insertTask}
-            textHandleSunmit={'Adicionar'}
+            textHandleSubmit={'Adicionar'}
             returnPage={returnPage}
+            handleSelect={handleSetTaskPrivate}
+            valuesSelect={['Pessoal', 'Pública']}
         />
     </>
   )

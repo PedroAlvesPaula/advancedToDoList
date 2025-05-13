@@ -1,15 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { Button, List, ListItem } from '@mui/material';
+import { Button, List, ListItem, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
 
 export const FormAddTask = ({
                             formInformation, 
                             handleSubmit, 
-                            textHandleSunmit, 
-                            returnPage
+                            textHandleSubmit, 
+                            returnPage,
+                            handleSelect,
+                            valuesSelect,
                         }) => {
+
+    const [value, setValue] = useState('Pública');
+
+    const handleSetValue = (e) => {
+        setValue(e.target.value);
+        handleSelect(e);
+    }
 
   return (
     <div    style={{
@@ -56,22 +65,42 @@ export const FormAddTask = ({
                         />
                     </ListItem>
                 ))}
-            <Button 
-                variant='contained' 
-                size='small' 
-                sx={{letterSpacing: '2px'}}
-                onClick={(e) => handleSubmit(e)}
-            >
-                {textHandleSunmit}
-            </Button>
-            <Button 
-                variant='contained' 
-                size='small' 
-                sx={{letterSpacing: '2px'}}
-                onClick={() => returnPage()}
-            >
-                Voltar
-            </Button>
+
+                <ListItem>
+                    <Box sx={{ minWidth: 120 }}>
+                        <FormControl>
+                            <InputLabel id="demo-simple-select-label">Visualização</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={value}
+                                label="Visualização"
+                                onChange={(e) => handleSetValue(e)}
+                                sx={{width: '100%'}}
+                            >
+                                <MenuItem value={'Pessoal'}>{valuesSelect[0]}</MenuItem>
+                                <MenuItem value={'Pública'}>{valuesSelect[1]}</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </Box>
+                </ListItem>
+
+                <Button 
+                    variant='contained' 
+                    size='small' 
+                    sx={{letterSpacing: '2px'}}
+                    onClick={(e) => handleSubmit(e)}
+                >
+                    {textHandleSubmit}
+                </Button>
+                <Button 
+                    variant='contained' 
+                    size='small' 
+                    sx={{letterSpacing: '2px'}}
+                    onClick={() => returnPage()}
+                >
+                    Voltar
+                </Button>
             </List>
         </Box>
     </div>
