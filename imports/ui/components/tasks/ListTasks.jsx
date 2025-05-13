@@ -47,13 +47,19 @@ export const ListTasks = ({ tasks, handleEdit, handleDelete }) => {
                 <EditIcon
                   onClick={() => handleEdit(task._id)}
                   sx={{
-                    marginRight: '10px'
+                    marginRight: '10px',
+                    '&:hover': {
+                      cursor: 'pointer'
+                    }
                   }}
                 ></EditIcon>
                 <DeleteIcon
                   onClick={() => handleDelete(task._id)}
                   sx={{
-                    marginLeft: '10px'
+                    marginLeft: '10px',
+                    '&:hover': {
+                      cursor: 'pointer'
+                    }
                   }}
                 ></DeleteIcon>
               </ListItem>

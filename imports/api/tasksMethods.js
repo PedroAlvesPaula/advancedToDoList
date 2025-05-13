@@ -12,7 +12,7 @@ Meteor.methods({
                 description: task.description,
                 updateAt: new Date(),
                 isPrivate: task.isPrivate,
-                state: task.stage,
+                state: task.state,
             }
         })
     },

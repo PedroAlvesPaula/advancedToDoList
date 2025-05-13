@@ -36,8 +36,6 @@ export const Tasks = () => {
     navigate('/');
   }
 
-  console.log('Tasks: ', tasks);
-
   return (
     <>
       {user ? (
