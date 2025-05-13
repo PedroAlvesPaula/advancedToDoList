@@ -1,42 +1,56 @@
 import React, { useState } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useNavigate, useParams } from 'react-router-dom';
+import { TasksCollection } from '/imports/api/tasksCollection';
 
-import { FormTask } from '../components/tasks/FormTask';
+import { FormTask } from '../components/tasks/FormAddTask';
+import { useTracker } from 'meteor/react-meteor-data';
 
 export const EditTask = () => {
 
   const { id } = useParams();
 
-  console.log(id);
+  const task = useTracker(() => {
+    const handler = Meteor.subscribe('tasks');
+    if (!handler.ready()) return null;
+    return TasksCollection.findOne({_id: id});
+  });
 
+  
   const navigate = useNavigate();
-
+  
   const [isEditing, setIsEditing] = useState(false);
-
+  
   const [newTitle, setNewTitle] = useState('');
   const [newDescription, setNewDescription] = useState('');
   const [newIsPrivate, setNewIsPrivate] = useState('');
-
-
+  const [newState, setNewState] = useState('');
+  
+  
   const editControl = () => {
     setIsEditing(!isEditing);
   }
-
+  
+  console.log(task);
   const formData = [
     {
-        label:'De um novo titulo a tarefa',
+        label: task?.title,
         helperText: 'Edite o titulo da tarefa',
         set: setNewTitle
     },
     {
-        label:'Descrição',
-        helperText: 'Dê uma pequena descrição sobre',
+        label: task?.description,
+        helperText: 'Edite a descrição se desejar',
         set: setNewDescription
     },
     {
-        label:'Tarefa pessoal?',
-        helperText: 'Responda com SIM ou NÃO',
+        label: task?.state,
+        helperText: 'Mude o estágio da tarefa',
+        set: setNewDescription
+    },
+    {
+        label: task?.isPrivate,
+        helperText: 'Troque',
         set: setNewIsPrivate
     },
   ];
@@ -46,7 +60,8 @@ export const EditTask = () => {
     const task = {
       title: newTitle,
       newDescription: newDescription,
-      IsPrivate: newIsPrivate
+      IsPrivate: newIsPrivate,
+      state: newState,
     };
     editControl();
     Meteor.callAsync('tasks.updateTask', [task]);
