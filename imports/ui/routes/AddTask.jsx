@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useNavigate } from 'react-router-dom';
 
-import { FormTask } from '../components/tasks/FormTask';
+import { FormTask } from '../components/tasks/FormAddTask';
 
 export const AddTask = () => {
 
@@ -25,7 +25,8 @@ export const AddTask = () => {
             isPrivate: taskPrivate,
             createdAt: new Date(),
             isChecked: false,
-            owner: user.username
+            owner: user.username,
+            state: 1
         })
         setTaskTitle('');
         settaskDescription('');
