@@ -5,6 +5,9 @@ import { TasksCollection } from '/imports/api/tasksCollection';
 
 import { FormEditTask } from '../components/tasks/FormEditTask';
 import { useTracker } from 'meteor/react-meteor-data';
+import { FormEditDisable } from '../components/tasks/FormEditDisable';
+
+import { Button } from '@mui/material';
 
 export const EditTask = () => {
 
@@ -76,12 +79,29 @@ export const EditTask = () => {
   }
 
   return (
-    <FormEditTask 
-      formInformation={formData}
-      handleSubmit={updateTask}
-      textHandleSunmit={'Salvar'}
-      returnPage={returnPage}
-      selectValues={selectValues}
-    />
+    <div>
+      <Button
+        onClick={() => setIsEditing(!isEditing)}
+      >Editar</Button>
+      {
+        isEditing ? (
+          <FormEditTask 
+            formInformation={formData}
+            handleSubmit={updateTask}
+            textHandleSunmit={'Salvar'}
+            returnPage={returnPage}
+            selectValues={selectValues}
+          />
+        ) : (
+          <FormEditDisable 
+            formInformation={formData}
+            handleSubmit={updateTask}
+            textHandleSunmit={'Salvar'}
+            returnPage={returnPage}
+            selectValues={selectValues}
+          />
+        )
+      }
+    </div>
   )
 }
