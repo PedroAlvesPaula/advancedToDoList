@@ -25,8 +25,8 @@ export const EditTask = () => {
   const [newTitle, setNewTitle] = useState(task.title || '');
   const [newDescription, setNewDescription] = useState(task.description || '');
   const [newIsPrivate, setNewIsPrivate] = useState(task.isPrivate ? 'Pessoal' : 'Pública');
-  const [newState, setNewState] = useState(task.state || '');
-  
+  const [newState, setNewState] = useState(task.state || {});
+
   const editControl = () => {
     setIsEditing(!isEditing);
   }
@@ -44,22 +44,25 @@ export const EditTask = () => {
         helperText: 'Edite a descrição se desejar',
         set: setNewDescription
     },
-    {
-        label: 'Estado',
-        value: newState || '',
-        helperText: 'Mude o estágio da tarefa',
-        set: setNewState
-    },
   ];
 
-  const selectValues = [
+  const selectValuesPrivate = [
     {
       label: 'Visualização',
       value: newIsPrivate || '',
-      helperText: 'Troque',
-      set: (value) => setNewIsPrivate(value)
+      helperText: 'Troque o tipo de visualização',
+      set: (value) => setNewIsPrivate(value),
     },
-  ]
+  ];
+
+  const selectValuesSituation = [
+    {
+      label: 'Visualização',
+      value: newState,
+      helperText: 'Troque a situação',
+      set: (value) => setNewState(value),
+    },
+  ];
 
   const updateTask = () => {
     const newTask = {
@@ -69,6 +72,7 @@ export const EditTask = () => {
       isPrivate: newIsPrivate,
       state: newState,
     };
+    console.log('EditTask newTask', newTask);
     editControl();
     Meteor.callAsync('tasks.updateTask', {task: newTask});
     navigate('/tasks');
@@ -83,6 +87,7 @@ export const EditTask = () => {
       <Button
         onClick={() => setIsEditing(!isEditing)}
       >Editar</Button>
+
       {
         isEditing ? (
           <FormEditTask 
@@ -90,18 +95,21 @@ export const EditTask = () => {
             handleSubmit={updateTask}
             textHandleSunmit={'Salvar'}
             returnPage={returnPage}
-            selectValues={selectValues}
+            selectValuesPrivate={selectValuesPrivate}
+            selectValuesSituation={selectValuesSituation}
           />
         ) : (
-          <FormEditDisable 
+          <FormEditDisable
             formInformation={formData}
             handleSubmit={updateTask}
             textHandleSunmit={'Salvar'}
             returnPage={returnPage}
-            selectValues={selectValues}
-          />
+            selectValuesPrivate={selectValuesPrivate}
+            selectValuesSituation={selectValuesSituation}
+          />         
         )
       }
+
     </div>
   )
 }

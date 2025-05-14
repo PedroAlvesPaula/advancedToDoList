@@ -9,19 +9,20 @@ export const FormEditDisable = ({
                             handleSubmit, 
                             textHandleSunmit, 
                             returnPage,
-                            selectValues
-                        }) => {
-    const [selectValue, setSelectValue] = useState(selectValues[0].value || 'Pública');
-
-    const handleSelectValue = (e) => {
-        setSelectValue(e.target.value);
-        if(e.target.value === 'Pessoal'){
-            selectValues[0].set(true);
-        } else {
-            selectValues[0].set(false);
-        }
+                            selectValuesPrivate,
+                            selectValuesSituation
+    }) => {
+    const [selectValueP, setSelectValuePrivate] = useState(selectValuesPrivate[0].value || 'Pública');
+    
+    const inicializaState = () => {
+        if(selectValuesSituation[0].value.registered) return 'Cadastrada';
+        if(selectValuesSituation[0].value.InProgress) return 'Em andamento';
         
+        return 'Concluída';
     }
+    
+    const [selectValueS, setSelectValueS] = useState(inicializaState());
+
   return (
     
     <div    style={{
@@ -58,7 +59,7 @@ export const FormEditDisable = ({
                 {formInformation.map((element, index) => (  
                     <ListItem key={index}>
                         <TextField
-                        disabled
+                            disabled
                             id="standard-helperText"
                             label={element.label}
                             helperText={element.helperText}
@@ -73,13 +74,30 @@ export const FormEditDisable = ({
                 <ListItem>
                     <Box sx={{ minWidth: 120 }}>
                         <FormControl disabled>
+                            <InputLabel id="demo-simple-select-label">Situação</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={selectValueS}
+                                label="Situação"
+                                sx={{width: '100%'}}
+                            >
+                                <MenuItem value={'Cadastrada'}>Cadastrada</MenuItem>
+                                <MenuItem value={'Em andamento'}>Em andamento</MenuItem>
+                                <MenuItem value={'Concluída'}>Concluída</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </Box>
+                </ListItem>
+                <ListItem>
+                    <Box sx={{ minWidth: 120 }}>
+                        <FormControl disabled>
                             <InputLabel id="demo-simple-select-label">Visualização</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
-                                value={selectValue}
+                                value={selectValueP}
                                 label="Visualização"
-                                onChange={(e) => handleSelectValue(e)}
                                 sx={{width: '100%'}}
                             >
                                 <MenuItem value={'Pessoal'}>Pessoal</MenuItem>
@@ -90,6 +108,7 @@ export const FormEditDisable = ({
                 </ListItem>
 
                 <Button 
+                    disabled
                     variant='contained' 
                     size='small' 
                     sx={{letterSpacing: '2px'}}
@@ -98,6 +117,7 @@ export const FormEditDisable = ({
                     {textHandleSunmit}
                 </Button>
                 <Button 
+                    disabled
                     variant='contained' 
                     size='small' 
                     sx={{letterSpacing: '2px'}}

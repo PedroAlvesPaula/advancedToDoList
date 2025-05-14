@@ -30,7 +30,11 @@ export const AddTask = () => {
             createdAt: new Date(),
             isChecked: false,
             owner: user.username,
-            state: 1
+            state: {
+                registered: true,
+                inProgress: false,
+                completed: false,
+            }
         })
         setTaskTitle('');
         settaskDescription('');
