@@ -6,6 +6,7 @@ import { TasksCollection } from '/imports/api/tasksCollection';
 
 import { ToolbarApplication } from '../components/toolbar/ToolbarApplication';
 import { ListTasks } from '../components/tasks/ListTasks';
+import { NavigationBar } from '../components/toolbar/NavigationBar';
 
 export const Tasks = () => {
   const navigate = useNavigate();
@@ -57,6 +58,7 @@ export const Tasks = () => {
             textButton2={'Sair'}
             textToolbar={`${user?.username}, estas são suas tarefas`}
           />
+          <NavigationBar />
           <ListTasks 
             tasks={tasks} 
             handleEdit={edit}
