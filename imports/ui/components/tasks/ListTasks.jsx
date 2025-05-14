@@ -9,8 +9,9 @@ import Typography from '@mui/material/Typography';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
-export const ListTasks = ({ tasks, handleEdit, handleDelete }) => {
+export const ListTasks = ({ tasks, handleEdit, handleDelete, handleNextState }) => {
   return (
     
     <>
@@ -53,6 +54,15 @@ export const ListTasks = ({ tasks, handleEdit, handleDelete }) => {
                     }
                   }}
                 ></EditIcon>
+                <ArrowForwardIcon
+                  onClick={() => handleNextState(task._id, task.state)}
+                  sx={{
+                    marginLeft: '10px',
+                    '&:hover': {
+                      cursor: 'pointer'
+                    }
+                  }}
+                ></ArrowForwardIcon>
                 <DeleteIcon
                   onClick={() => handleDelete(task._id)}
                   sx={{

@@ -36,6 +36,16 @@ export const Tasks = () => {
     navigate('/');
   }
 
+  const handleNextState = (id, states) => {
+      Meteor.subscribe('tasks');
+
+      const state = Object.entries(states).map(([key, value]) => {
+        if(value) return key;
+      })
+
+      Meteor.callAsync('tasks.handleNextState', { id: id, state: state });
+  }
+
   return (
     <>
       {user ? (
@@ -51,6 +61,7 @@ export const Tasks = () => {
             tasks={tasks} 
             handleEdit={edit}
             handleDelete={deleteTask}
+            handleNextState={handleNextState}
             />
         </>
       ) : (
