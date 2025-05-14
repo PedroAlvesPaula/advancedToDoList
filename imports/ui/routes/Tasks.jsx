@@ -6,12 +6,11 @@ import { TasksCollection } from '/imports/api/tasksCollection';
 
 import { ToolbarApplication } from '../components/toolbar/ToolbarApplication';
 import { ListTasks } from '../components/tasks/ListTasks';
-import { NavigationBar } from '../components/toolbar/NavigationBar';
+import { NavigationBar } from '../components/toolbar/NavigationBar.jsx';
 
 export const Tasks = () => {
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
-
+  
   const user = useTracker(() => Meteor.user());
 
   const tasks = useTracker(() => {
