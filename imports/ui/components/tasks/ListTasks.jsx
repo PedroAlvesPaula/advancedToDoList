@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { ActionsTask } from './ActionsTask';
+
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
@@ -7,11 +9,9 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Typography from '@mui/material/Typography';
 import AssignmentIcon from '@mui/icons-material/Assignment';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
-export const ListTasks = ({ tasks, handleEdit, handleDelete, handleNextState }) => {
+
+export const ListTasks = ({ tasks, handleEdit, handleDelete, handleNextState, handleReset }) => {
   return (
     
     <>
@@ -42,36 +42,21 @@ export const ListTasks = ({ tasks, handleEdit, handleDelete, handleNextState }) 
                       >
                         {task.owner}
                       </Typography>
+                      <br></br>
+                      {task.isPrivate ? 'Tarefa pessoal' : 'Tarefa pública'}
                     </React.Fragment>
                   }
                 />
-                <EditIcon
-                  onClick={() => handleEdit(task._id)}
-                  sx={{
-                    marginRight: '10px',
-                    '&:hover': {
-                      cursor: 'pointer'
-                    }
-                  }}
-                ></EditIcon>
-                <ArrowForwardIcon
-                  onClick={() => handleNextState(task._id, task.state)}
-                  sx={{
-                    marginLeft: '10px',
-                    '&:hover': {
-                      cursor: 'pointer'
-                    }
-                  }}
-                ></ArrowForwardIcon>
-                <DeleteIcon
-                  onClick={() => handleDelete(task._id)}
-                  sx={{
-                    marginLeft: '10px',
-                    '&:hover': {
-                      cursor: 'pointer'
-                    }
-                  }}
-                ></DeleteIcon>
+
+                <ActionsTask 
+                  handleDelete={handleDelete}
+                  handleEdit={handleEdit}
+                  handleNextState={handleNextState}
+                  handleReset={handleReset}
+                  id={task._id}
+                  userTaskId={task.userId}
+                  state={task.state}
+                />
               </ListItem>
               <Divider variant='inset' component='li'/>
             </div>

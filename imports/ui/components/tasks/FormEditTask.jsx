@@ -32,7 +32,6 @@ export const FormEditTask = ({
 
     
     const [selectValueS, setSelectValueS] = useState(inicializaState());
-    console.log(selectValueS);
 
     const handleSelectValueS = (e) => {
         setSelectValueS(e.target.value);

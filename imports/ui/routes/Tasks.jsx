@@ -46,6 +46,11 @@ export const Tasks = () => {
       Meteor.callAsync('tasks.handleNextState', { id: id, state: state });
   }
 
+  const handleReset = (id) => {
+    Meteor.subscribe('tasks');
+    Meteor.callAsync('tasks.resetState', {id: id});
+  }
+
   return (
     <>
       {user ? (
@@ -63,6 +68,7 @@ export const Tasks = () => {
             handleEdit={edit}
             handleDelete={deleteTask}
             handleNextState={handleNextState}
+            handleReset={handleReset}
             />
         </>
       ) : (

@@ -6,5 +6,5 @@ Meteor.publish('tasks', function () {
     if (!userId){
         return this.ready();
     }
-    return TasksCollection.find();
+    return TasksCollection.find({$or: [{isPrivate: false}, {userId: this.userId}]});
 });

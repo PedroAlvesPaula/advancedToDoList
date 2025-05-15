@@ -44,5 +44,14 @@ Meteor.methods({
                 state: newState
             }
         })
+    },
+    'tasks.resetState'({ id }){
+        const newState = {
+            registered: true,
+            inProgress: false,
+            completed: false,
+        };
+
+        return TasksCollection.updateAsync(id, {$set: {state: newState}});
     }
 })
