@@ -4,6 +4,8 @@ import { Accounts } from 'meteor/accounts-base';
 
 import '../imports/api/tasksMethods';
 import '../imports/api/TasksPublication';
+import '../imports/api/usersPublication';
+import '../imports/api/usersMethods';
 
 const USER = 'dev';
 const PASSWORD = '123';

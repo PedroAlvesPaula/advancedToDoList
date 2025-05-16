@@ -34,6 +34,10 @@ Meteor.startup(() => {
       path:"/editTask/:id",
       element: <EditTask />
     },
+    {
+      path:"/userProfile",
+      element: <EditTask />
+    },
   ]);
 
   root.render(
