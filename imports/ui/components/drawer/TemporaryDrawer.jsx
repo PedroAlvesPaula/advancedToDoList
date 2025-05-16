@@ -13,6 +13,7 @@ import Avatar from '@mui/material/Avatar';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
+import EditIcon from '@mui/icons-material/Edit';
 
 export const TemporaryDrawer = ({ toggleDrawer, open, user, buttonsDrawer }) => {
 
@@ -23,12 +24,14 @@ export const TemporaryDrawer = ({ toggleDrawer, open, user, buttonsDrawer }) => 
     <div>
       <Drawer open={open} onClose={toggleDrawer(false)}>
         <Box sx={{ width: 320 }} role="presentation" onClick={toggleDrawer(false)}>
-          <Avatar
-            alt='Imagem de perfil'
-            src={profile.profileImage}
-            sx={{ width: 56, height: 56 }}
-          />
           <List>
+            <ListItem sx={{alignItems: 'center', justifyContent: 'center'}}>
+              <Avatar
+                alt='Imagem de perfil'
+                src={profile.profileImage}
+                sx={{ width: 128, height: 128 }}
+              />
+            </ListItem>
             {userInformations.map((text, index) => (
               <ListItem key={text} disablePadding>
                 <ListItemIcon sx={{padding: '8px 18px'}}>
