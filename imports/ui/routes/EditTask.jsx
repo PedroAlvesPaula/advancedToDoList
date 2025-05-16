@@ -5,7 +5,6 @@ import { TasksCollection } from '/imports/api/tasksCollection';
 
 import { FormEditTask } from '../components/tasks/FormEditTask';
 import { useTracker } from 'meteor/react-meteor-data';
-import { FormEditDisable } from '../components/tasks/FormEditDisable';
 
 import { Button } from '@mui/material';
 
@@ -25,7 +24,7 @@ export const EditTask = () => {
   const [newTitle, setNewTitle] = useState(task.title || '');
   const [newDescription, setNewDescription] = useState(task.description || '');
   const [newIsPrivate, setNewIsPrivate] = useState(task.isPrivate ? 'Pessoal' : 'Pública');
-  const [newState, setNewState] = useState(task.state || {});
+  const [newState, setNewState] = useState(task.state || '');
 
   const editControl = () => {
     setIsEditing(!isEditing);
@@ -55,11 +54,11 @@ export const EditTask = () => {
     },
   ];
 
-  const selectValuesSituation = [
+  const selectValuesState = [
     {
-      label: 'Visualização',
+      label: 'Estado',
       value: newState,
-      helperText: 'Troque a situação',
+      helperText: 'Estado atual da tarefa',
       set: (value) => setNewState(value),
     },
   ];
@@ -88,28 +87,14 @@ export const EditTask = () => {
         onClick={() => setIsEditing(!isEditing)}
       >Editar</Button>
 
-      {
-        isEditing ? (
-          <FormEditTask 
-            formInformation={formData}
-            handleSubmit={updateTask}
-            textHandleSunmit={'Salvar'}
-            returnPage={returnPage}
-            selectValuesPrivate={selectValuesPrivate}
-            selectValuesSituation={selectValuesSituation}
-          />
-        ) : (
-          <FormEditDisable
-            formInformation={formData}
-            handleSubmit={updateTask}
-            textHandleSunmit={'Salvar'}
-            returnPage={returnPage}
-            selectValuesPrivate={selectValuesPrivate}
-            selectValuesSituation={selectValuesSituation}
-          />         
-        )
-      }
-
+      <FormEditTask 
+        formInformation={formData}
+        handleSubmit={updateTask}
+        textHandleSunmit={'Salvar'}
+        returnPage={returnPage}
+        selectValuesPrivate={selectValuesPrivate}
+        selectValuesState={selectValuesState}
+      />
     </div>
   )
 }

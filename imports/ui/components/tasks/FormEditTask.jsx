@@ -10,7 +10,7 @@ export const FormEditTask = ({
                             textHandleSunmit, 
                             returnPage,
                             selectValuesPrivate,
-                            selectValuesSituation
+                            selectValuesState
     }) => {
     const [selectValueP, setSelectValuePrivate] = useState(selectValuesPrivate[0].value || 'Pública');
     
@@ -23,37 +23,12 @@ export const FormEditTask = ({
         }
     }
     
-    const inicializaState = () => {
-        if(selectValuesSituation[0].value.registered) return 'Cadastrada';
-        else if(selectValuesSituation[0].value.inProgress) return 'Em andamento';
-        
-        return 'Concluída';
-    }
-
-    
     const [selectValueS, setSelectValueS] = useState(inicializaState());
 
     const handleSelectValueS = (e) => {
         setSelectValueS(e.target.value);
-        if(e.target.value === 'Cadastrada'){
-            selectValuesSituation[0].set({
-                registered: true,
-                inProgress: false,
-                completed: false,
-            });
-        } else if(e.target.value === 'Em andamento'){
-                selectValuesSituation[0].set({
-                registered: false,
-                inProgress: true,
-                completed: false,
-            });
-        } else if(e.target.value === 'Concluída'){
-                selectValuesSituation[0].set({
-                registered: false,
-                inProgress: false,
-                completed: true,
-            });
-        }
+
+        selectValuesState[0].set(e.target.value);
     }
   return (
     

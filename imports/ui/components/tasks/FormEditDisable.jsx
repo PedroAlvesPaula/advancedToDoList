@@ -10,16 +10,9 @@ export const FormEditDisable = ({
                             textHandleSunmit, 
                             returnPage,
                             selectValuesPrivate,
-                            selectValuesSituation
+                            selectValuesState
     }) => {
     const [selectValueP, setSelectValuePrivate] = useState(selectValuesPrivate[0].value || 'Pública');
-    
-    const inicializaState = () => {
-        if(selectValuesSituation[0].value.registered) return 'Cadastrada';
-        if(selectValuesSituation[0].value.InProgress) return 'Em andamento';
-        
-        return 'Concluída';
-    }
     
     const [selectValueS, setSelectValueS] = useState(inicializaState());
 
