@@ -7,11 +7,19 @@ import { TasksCollection } from '/imports/api/tasksCollection';
 import { ToolbarApplication } from '../components/toolbar/ToolbarApplication';
 import { ListTasks } from '../components/tasks/ListTasks';
 import { NavigationBar } from '../components/toolbar/NavigationBar.jsx';
+import { TemporaryDrawer } from '../components/drawer/TemporaryDrawer.jsx';
+import PostAddIcon from '@mui/icons-material/PostAdd';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 export const Tasks = () => {
   const navigate = useNavigate();
   
   const user = useTracker(() => Meteor.user());
+
+  const [open, setOpen] = React.useState(false);
+  const toggleDrawer = (newOpen) => () => {
+      setOpen(newOpen);
+  };
 
   const tasks = useTracker(() => {
     if (!user) return [];
@@ -36,12 +44,21 @@ export const Tasks = () => {
     navigate('/');
   }
 
-  const handleNextState = (id, states) => {
-      Meteor.subscribe('tasks');
+  const buttonsDrawer = [
+    {
+        click: addTask,
+        text: 'Adicionar tarefa',
+        icon: <PostAddIcon />
+    },
+    {
+        click: logout,
+        text: 'Sair',
+        icon: <LogoutIcon />
+    },
+  ]
 
-      const state = Object.entries(states).map(([key, value]) => {
-        if(value) return key;
-      })
+  const handleNextState = (id, state) => {
+      Meteor.subscribe('tasks');
 
       Meteor.callAsync('tasks.handleNextState', { id: id, state: state });
   }
@@ -56,11 +73,14 @@ export const Tasks = () => {
       {user ? (
         <> 
           <ToolbarApplication 
-            actionButton1={addTask}
-            actionButton2={logout}
-            textButton1={'adcionar'}
-            textButton2={'Sair'}
             textToolbar={`${user?.username}, estas são suas tarefas`}
+            toggleDrawer={toggleDrawer}
+          />
+          <TemporaryDrawer
+              toggleDrawer={toggleDrawer}
+              open={open} 
+              user={user}
+              buttonsDrawer={buttonsDrawer}
           />
           <NavigationBar />
           <ListTasks 

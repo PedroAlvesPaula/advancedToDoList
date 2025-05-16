@@ -16,6 +16,11 @@ import Tooltip from '@mui/material/Tooltip';
 export const ActionsTask = ({ userTaskId , id, state, handleDelete, handleEdit, handleNextState, handleReset }) => {
     const user = useTracker(() => Meteor.user());
 
+    const handle = () => {
+        console.log(state, id);
+        handleNextState(id, state)
+    }
+
      const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -54,7 +59,7 @@ export const ActionsTask = ({ userTaskId , id, state, handleDelete, handleEdit, 
 
                     <Tooltip title='Avançar 1 estado'>
                         <IconButton
-                        onClick={() => handleNextState(id, state)}
+                        onClick={handle}
                         size='small'
                         sx={{
                             marginLeft: '10px',

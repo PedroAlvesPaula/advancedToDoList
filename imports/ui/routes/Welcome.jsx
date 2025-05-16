@@ -1,23 +1,24 @@
 // import React from 'react'; 
-import React from 'react';
+import React, { useState } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useNavigate } from 'react-router-dom';
 
 import { ToolbarApplication } from '../components/toolbar/ToolbarApplication';
 import { CardsWelcome } from '../components/welcome/CardsWelcome';
-import { TemporaryDrawer } from '../components/drawer/TemporaryDrawer'
+import { TemporaryDrawer } from '../components/drawer/TemporaryDrawer';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 export const Welcome = () => {
-    const [open, setOpen] = React.useState(false);
-
-    const toggleDrawer = (newOpen) => () => {
-        setOpen(newOpen);
-    };
+    const user = useTracker(() => Meteor.user());
 
     const navigate = useNavigate();
 
-    const user = useTracker(() => Meteor.user());
+    const [open, setOpen] = useState(false);
+    const toggleDrawer = (newOpen) => () => {
+        setOpen(newOpen);
+    };
 
     const data = [
         { title: 'Usuários', number: 12, description: 'ativos este mês' },
@@ -28,7 +29,7 @@ export const Welcome = () => {
 
     const logout = () => {
         Meteor.logout();
-        navigate('/')
+        navigate('/');
     }
 
     const handleClickTarefas = () => {
@@ -36,31 +37,29 @@ export const Welcome = () => {
     }
 
     const buttonsDrawer = [
-        {
-            click: handleClickTarefas,
-            text: 'Tarefas'
-        },
-        {
-            click: logout,
-            text: 'sair'
-        },
-    ]
+    {
+        click: handleClickTarefas,
+        text: 'Tarefas',
+        icon: <AssignmentIcon />
+    },
+    {
+        click: logout,
+        text: 'Sair',
+        icon: <LogoutIcon />
+    },
+    ];
 
     return (
         <>
             { user ? (
                 <>
                     <ToolbarApplication 
-                        actionButton1={handleClickTarefas}
-                        actionButton2={logout}
-                        textButton1={'Tarefas'}
-                        textButton2={'Sair'}
                         textToolbar={`Seja bem vindo ${user?.username}!`}
                         toggleDrawer={toggleDrawer}
                     />
 
-                    <TemporaryDrawer 
-                        toggleDrawer={toggleDrawer} 
+                    <TemporaryDrawer
+                        toggleDrawer={toggleDrawer}
                         open={open} 
                         user={user}
                         buttonsDrawer={buttonsDrawer}

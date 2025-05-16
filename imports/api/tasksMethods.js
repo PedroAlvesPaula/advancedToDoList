@@ -5,6 +5,7 @@ Meteor.methods({
     'tasks.insert'(doc){
         return TasksCollection.insertAsync({...doc, userId: this.userId},);
     },
+
     'tasks.updateTask'({ task }) {
         return TasksCollection.updateAsync(task._id, {
             $set: {
@@ -16,28 +17,21 @@ Meteor.methods({
             }
         })
     },
+
     'tasks.delete'({_id}){
         return TasksCollection.removeAsync(_id);
     },
+
     'tasks.handleNextState'({id, state}) {
-        const viewState = (actualState) => {
+        const oldState = state.toLowerCase().replace(/\s+/g, '');
+
         let newState;
-        if(actualState[0]) {
-            newState = {
-            registered: false,
-            inProgress: true,
-            completed: false
-            }   
-        } else if (actualState[1]){
-            newState = {
-            registered: false,
-            inProgress: false,
-            completed: true
-            } 
+
+        if (oldState === 'cadastrada'){
+            newState = 'Em andamento';
+        } else if (oldState === 'emandamento'){
+            newState = 'Concluída';
         }
-        return newState;
-        }
-        const newState = viewState(state);
 
         return TasksCollection.updateAsync(id, {
             $set: {
@@ -45,12 +39,9 @@ Meteor.methods({
             }
         })
     },
+
     'tasks.resetState'({ id }){
-        const newState = {
-            registered: true,
-            inProgress: false,
-            completed: false,
-        };
+        const newState = 'Cadastrada';
 
         return TasksCollection.updateAsync(id, {$set: {state: newState}});
     }
