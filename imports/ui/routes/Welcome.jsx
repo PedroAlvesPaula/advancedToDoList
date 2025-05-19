@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useNavigate } from 'react-router-dom';
+import { TasksCollection } from '../../api/tasksCollection';
 
 import { ToolbarApplication } from '../components/toolbar/ToolbarApplication';
 import { CardsWelcome } from '../components/welcome/CardsWelcome';
@@ -20,11 +21,32 @@ export const Welcome = () => {
         setOpen(newOpen);
     };
 
+    const tasksRegistered = useTracker(() => {
+        if (!user) return 0;
+
+        Meteor.subscribe('tasks');
+
+        return TasksCollection.find({state: {$eq: 'Cadastrada'}}).count();
+    });
+    const tasksInProgress = useTracker(() => {
+        if (!user) return 0;
+
+        Meteor.subscribe('tasks');
+
+        return TasksCollection.find({state: {$eq: 'Em andamento'}}).count();
+    });
+    const tasksCompleted = useTracker(() => {
+        if (!user) return 0;
+
+        Meteor.subscribe('tasks');
+
+        return TasksCollection.find({state: {$eq: 'Concluída'}}).count();
+    });
+
     const data = [
-        { title: 'Usuários', number: 12, description: 'ativos este mês' },
-        { title: 'Vendas', number: 98, description: 'realizadas hoje' },
-        { title: 'Comentários', number: 340, description: 'nas últimas 24h' },
-        { title: 'Novos Cadastros', number: 45, description: 'esta semana' },
+        { title: 'Tarefas cadastradas', number: tasksRegistered, description: 'Total de tarefas cadastradas' },
+        { title: 'Tarefas em andamento', number: tasksInProgress, description: 'Total de tarefas que ainda estão sendo realizadas' },
+        { title: 'Tarefas concluídas', number: tasksCompleted, description: 'Total de tarefa concluídas' },
     ];
 
     const logout = () => {
