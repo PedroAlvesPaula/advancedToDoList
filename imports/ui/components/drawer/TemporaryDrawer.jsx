@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -11,11 +12,18 @@ import ListItemText from '@mui/material/ListItemText';
 import MailIcon from '@mui/icons-material/Mail';
 import Avatar from '@mui/material/Avatar';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 
 export const TemporaryDrawer = ({toggleDrawer, open, user, buttonsDrawer }) => {
 
   const {username, emails, profile} = user;
   const userInformations = [username, emails[0].address];
+
+  const navigate = useNavigate();
+
+  const navigateToUserProfile = () => {
+    navigate('/userProfile');
+  }
 
   return (
     <div>
@@ -37,6 +45,14 @@ export const TemporaryDrawer = ({toggleDrawer, open, user, buttonsDrawer }) => {
                 <ListItemText primary={text} />
               </ListItem>
             ))}
+            <ListItem sx={{width: '100%', padding: 0}}>
+                <ListItemButton onClick={navigateToUserProfile}>
+                  <ListItemIcon>
+                    <ManageAccountsIcon fontSize='large'/>
+                  </ListItemIcon>
+                    <ListItemText primary='Acessar perfil'/>
+                </ListItemButton>
+            </ListItem>
           </List>
           <Divider />
           <List>
