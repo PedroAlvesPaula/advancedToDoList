@@ -62,12 +62,12 @@ export const Welcome = () => {
     {
         click: handleClickTarefas,
         text: 'Tarefas',
-        icon: <AssignmentIcon fontSize='large'/>
+        icon: <AssignmentIcon sx={{color: '#E0E2E6'}} fontSize='large'/>
     },
     {
         click: logout,
         text: 'Sair',
-        icon: <LogoutIcon fontSize='large'/>
+        icon: <LogoutIcon sx={{color: '#E0E2E6'}} fontSize='large'/>
     },
     ];
 

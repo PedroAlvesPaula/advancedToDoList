@@ -48,12 +48,12 @@ export const Tasks = () => {
     {
         click: addTask,
         text: 'Adicionar tarefa',
-        icon: <PostAddIcon fontSize='large'/>
+        icon: <PostAddIcon sx={{color: '#E0E2E6'}} fontSize='large'/>
     },
     {
         click: logout,
         text: 'Sair',
-        icon: <LogoutIcon fontSize='large'/>
+        icon: <LogoutIcon sx={{color: '#E0E2E6'}} fontSize='large'/>
     },
   ]
 

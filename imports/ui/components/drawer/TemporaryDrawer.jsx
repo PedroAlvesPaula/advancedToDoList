@@ -28,7 +28,14 @@ export const TemporaryDrawer = ({toggleDrawer, open, user, buttonsDrawer }) => {
   return (
     <div>
       <Drawer open={open} onClose={toggleDrawer(false)}>
-        <Box sx={{ width: 320 }} role="presentation" onClick={toggleDrawer(false)}>
+        <Box sx={{ width: 320, 
+          backgroundColor: '#8c77fe', 
+          height: '100vh', 
+          color: '#E0E2E6',
+          }} 
+          role="presentation" 
+          onClick={toggleDrawer(false)}
+        >
           <List>
             <ListItem sx={{alignItems: 'center', justifyContent: 'center'}}>
               <Avatar
@@ -40,7 +47,7 @@ export const TemporaryDrawer = ({toggleDrawer, open, user, buttonsDrawer }) => {
             {userInformations.map((text, index) => (
               <ListItem key={text} disablePadding>
                 <ListItemIcon sx={{padding: '8px 18px'}}>
-                  {index === 0 ? <AccountCircleIcon fontSize='large'/> : <MailIcon fontSize='large'/>}
+                  {index === 0 ? <AccountCircleIcon sx={{color: '#E0E2E6'}} fontSize='large'/> : <MailIcon sx={{color: '#E0E2E6'}} fontSize='large'/>}
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
@@ -48,7 +55,7 @@ export const TemporaryDrawer = ({toggleDrawer, open, user, buttonsDrawer }) => {
             <ListItem sx={{width: '100%', padding: 0}}>
                 <ListItemButton onClick={navigateToUserProfile}>
                   <ListItemIcon>
-                    <ManageAccountsIcon fontSize='large'/>
+                    <ManageAccountsIcon sx={{color: '#E0E2E6'}} fontSize='large'/>
                   </ListItemIcon>
                     <ListItemText primary='Acessar perfil'/>
                 </ListItemButton>
