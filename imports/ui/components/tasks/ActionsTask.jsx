@@ -17,8 +17,7 @@ export const ActionsTask = ({ userTaskId , id, state, handleDelete, handleEdit, 
     const user = useTracker(() => Meteor.user());
 
     const handle = () => {
-        console.log(state, id);
-        handleNextState(id, state)
+        handleNextState(id, state);
     }
 
      const theme = useTheme();
