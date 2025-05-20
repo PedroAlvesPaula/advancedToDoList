@@ -3,6 +3,9 @@ import { useState } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useNavigate } from 'react-router-dom'
 
+import TextField from '@mui/material/TextField';
+import { Button } from '@mui/material';
+
 import './FormLogin.css';
 
 export const LoginForm = () => {
@@ -25,28 +28,35 @@ export const LoginForm = () => {
                 </div>
                 <form onSubmit={(e) => submit(e)} className='form-signUp'>
                     <div className='container-input'>
-                        <label>
-                            <span>Email:</span>
-                            <input 
-                                type="email"
-                                placeholder="Digite seu email"
-                                required
-                                onChange={(e) => setEmail(e.target.value)} 
-                            />
-                        </label>
+                        <TextField
+                            label={'Ex: nome@gmail.com'}
+                            helperText={'Digite seu email que ja foi cadastrado'}
+                            variant="standard"
+                            sx={{width: '100%'}}
+                            slotProps={{
+                                input: {sx: { color: '#d9d4ff', width: '100%' }},
+                                inputLabel: {sx: { color: '#d9d4ff', padding: '10px' }},
+                                formHelperText: {sx: { color: '#d9d4ff' }}
+                            }}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
 
-                        <label>
-                            <span>Senha:</span>
-                            <input 
-                                type="password"
-                                placeholder="Digite sua senha"
-                                required
-                                onChange={(e) => setPassword(e.target.value)} 
-                            />
-                        </label>
+                        <TextField
+                            label={'Digite sua senha'}
+                            type='password'
+                            helperText={'Digite a senha que você cadastrou'}
+                            variant="standard"
+                            sx={{width: '100%'}}
+                            slotProps={{
+                                input: {sx: { color: '#d9d4ff', width: '100%' }},
+                                inputLabel: {sx: { color: '#d9d4ff', padding: '10px' }},
+                                formHelperText: {sx: { color: '#d9d4ff' }}
+                            }}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
                     </div>
                     <div className='submit-button'>
-                        <button type='submit'>Entrar</button>
+                        <Button type='submit'>Entrar</Button>
                     </div>
                 </form>
             </div>

@@ -1,7 +1,6 @@
 .main-container-form-signUp {
     width: 100vw;
-    height: 100vh;
-    padding: 32px;
+    height: fit-content;
     box-sizing: border-box;
 }
 
@@ -61,11 +60,7 @@
     width: 100%; 
     border: 0;
     border-radius: 5px;
-    background-color: #ece9fd;
-}
-
-.container-form-signUp .form-signUp .container-input input:focus{
-    border: 2px solid #120045;
+    color: #d9d4ff;
 }
 
 .container-form-signUp .submit-button {
@@ -94,9 +89,8 @@
 
 .isClient-text:hover {
     cursor: pointer;
-    color: #744dfe;
+    color: #27017d;
 }
-
 
 @media (min-height: 800px){
 
