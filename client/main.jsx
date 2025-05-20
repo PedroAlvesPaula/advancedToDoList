@@ -8,6 +8,7 @@ import { Welcome } from '../imports/ui/routes/Welcome';
 import { AddTask } from '../imports/ui/routes/AddTask';
 import { EditTask } from '../imports/ui/routes/EditTask';
 import { UserProfile } from '../imports/ui/routes/UserProfile';
+import { Login } from '../imports/ui/routes/Login';
 
 Meteor.startup(() => {
 
@@ -18,6 +19,10 @@ Meteor.startup(() => {
     {
       path:"/",
       element: <App />
+    },
+    {
+      path:"/login",
+      element: <Login />
     },
     {
       path:"/welcome",

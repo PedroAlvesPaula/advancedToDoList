@@ -8,7 +8,7 @@ import { Button } from '@mui/material';
 
 import './FormLogin.css';
 
-export const LoginForm = () => {
+export const FormLogin = () => {
     const navigate = useNavigate();
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');

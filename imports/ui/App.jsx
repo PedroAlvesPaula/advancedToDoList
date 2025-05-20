@@ -1,17 +1,12 @@
-import React, { useState, createContext, useEffect, useContext } from 'react';
-import { LoginForm } from './components/login_signUp/FormLogin.jsx';
+import React, { useState } from 'react';
 import { FormSignUp } from './components/login_signUp/FormSignUp.jsx'
 
-export const App = () => {
-  
-  const [isClient, setIsClient] = useState('');
 
+export const App = () => {
   return (
     
       <div>
-        {
-          isClient ? <LoginForm /> : <FormSignUp setIsClient={setIsClient} />
-        }
+          <FormSignUp />
       </div>
   );
 };
