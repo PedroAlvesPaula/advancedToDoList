@@ -1,5 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Meteor } from 'meteor/meteor';
+import { useTracker } from 'meteor/react-meteor-data';
 
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -14,7 +16,9 @@ import Avatar from '@mui/material/Avatar';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 
-export const TemporaryDrawer = ({toggleDrawer, open, user, buttonsDrawer }) => {
+export const TemporaryDrawer = ({toggleDrawer, open, buttonsDrawer }) => {
+
+  const user = useTracker(() => Meteor.user());
 
   const {username, emails, profile} = user;
   const userInformations = [username, emails[0].address];
