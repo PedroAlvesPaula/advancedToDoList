@@ -10,6 +10,7 @@ import { CardsWelcome } from '../components/welcome/CardsWelcome';
 import { TemporaryDrawer } from '../components/drawer/TemporaryDrawer';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import LogoutIcon from '@mui/icons-material/Logout';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export const Welcome = () => {
     const user = useTracker(() => Meteor.user());
@@ -82,14 +83,28 @@ export const Welcome = () => {
 
                     <TemporaryDrawer
                         toggleDrawer={toggleDrawer}
-                        open={open} 
-                        user={user}
+                        open={open}
                         buttonsDrawer={buttonsDrawer}
                     />
 
                     <CardsWelcome data={data}/>
                 </>
-            ) : (<><h2>Usuário não encontrado!</h2></>)
+            ) : (
+                <>
+                    <div style={{height: '100vh', width: '100vw'}}>
+                        <div style={{
+                                        width: '100%', 
+                                        height: '100%', 
+                                        display: 'flex', 
+                                        alignItems: 'center', 
+                                        justifyContent: 'center'
+                                    }}
+                        >
+                            <CircularProgress color="secondary" />
+                        </div>
+                    </div>
+                </>
+            )
         }
         </>
     );
