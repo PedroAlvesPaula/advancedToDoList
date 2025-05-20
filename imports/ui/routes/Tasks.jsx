@@ -79,7 +79,6 @@ export const Tasks = () => {
           <TemporaryDrawer
               toggleDrawer={toggleDrawer}
               open={open} 
-              user={user}
               buttonsDrawer={buttonsDrawer}
           />
           <NavigationBar />
