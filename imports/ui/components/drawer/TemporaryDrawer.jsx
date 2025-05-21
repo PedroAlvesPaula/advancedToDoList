@@ -15,6 +15,7 @@ import Avatar from '@mui/material/Avatar';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import LogoutIcon from '@mui/icons-material/Logout';
+import HomeIcon from '@mui/icons-material/Home';
 
 export const TemporaryDrawer = ({toggleDrawer, open, buttonsDrawer }) => {
 
@@ -85,6 +86,14 @@ export const TemporaryDrawer = ({toggleDrawer, open, buttonsDrawer }) => {
                   </ListItemButton>
                 </ListItem>
               ))}
+              <ListItem sx={{width: '100%', padding: 0}}>
+                  <ListItemButton onClick={() => {navigate('/welcome');}}>
+                    <ListItemIcon>
+                      <HomeIcon sx={{color: '#E0E2E6'}} fontSize='large'/>
+                    </ListItemIcon>
+                      <ListItemText primary='Início'/>
+                  </ListItemButton>
+              </ListItem>
               <ListItem sx={{width: '100%', padding: 0}}>
                   <ListItemButton onClick={() => {Meteor.logout; navigate('/');}}>
                     <ListItemIcon>
