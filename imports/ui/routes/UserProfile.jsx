@@ -30,11 +30,6 @@ export const UserProfile = () => {
 
   const buttonsDrawer = [
     {
-      click: handleClickHome,
-      text: 'Início',
-      icon: <HomeIcon sx={{color: '#E0E2E6'}} fontSize='large'/>
-    },
-    {
       click: handleClickTarefas,
       text: 'Tarefas',
       icon: <AssignmentIcon sx={{color: '#E0E2E6'}} fontSize='large'/>
