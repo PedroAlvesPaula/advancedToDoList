@@ -22,8 +22,6 @@ export const FormEditTask = ({
             selectValuesPrivate[0].set(false);
         }
     }
-
-    console.log(selectValuesState);
     
     const [selectValueS, setSelectValueS] = useState(selectValuesState[0].value);
 
