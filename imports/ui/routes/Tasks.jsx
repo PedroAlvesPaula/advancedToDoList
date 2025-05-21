@@ -45,33 +45,23 @@ export const Tasks = () => {
     navigate('/addTask');
   }
 
-  const logout = () => {
-    Meteor.logout();
-    navigate('/');
-  }
-
   const buttonsDrawer = [
     {
         click: addTask,
         text: 'Adicionar tarefa',
         icon: <PostAddIcon sx={{color: '#E0E2E6'}} fontSize='large'/>
     },
-    {
-        click: logout,
-        text: 'Sair',
-        icon: <LogoutIcon sx={{color: '#E0E2E6'}} fontSize='large'/>
-    },
   ]
 
-  const handleNextState = (id, state) => {
+  const handleNextState = async (id, state) => {
       Meteor.subscribe('tasks');
 
-      Meteor.callAsync('tasks.handleNextState', { id: id, state: state });
+      await Meteor.callAsync('tasks.handleNextState', { id: id, state: state });
   }
 
-  const handleReset = (id) => {
+  const handleReset = async (id) => {
     Meteor.subscribe('tasks');
-    Meteor.callAsync('tasks.resetState', {id: id});
+    await Meteor.callAsync('tasks.resetState', {id: id});
   }
 
   return (
