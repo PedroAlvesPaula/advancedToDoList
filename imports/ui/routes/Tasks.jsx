@@ -11,7 +11,7 @@ import { ListTasks } from '../components/tasks/ListTasks';
 import { NavigationBar } from '../components/toolbar/NavigationBar.jsx';
 import { TemporaryDrawer } from '../components/drawer/TemporaryDrawer.jsx';
 import PostAddIcon from '@mui/icons-material/PostAdd';
-import LogoutIcon from '@mui/icons-material/Logout';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export const Tasks = () => {
   const navigate = useNavigate();
@@ -87,7 +87,21 @@ export const Tasks = () => {
             />
         </>
       ) : (
-        <h1>Usuário não encontrado</h1>
+        <>
+          <div style={{height: '100vh', width: '100vw'}}>
+            <div 
+              style={{
+                width: '100%', 
+                height: '100%', 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center'
+              }}
+            >
+              <CircularProgress color="secondary" />
+            </div>
+          </div>
+        </>
       )}
     </>
   );

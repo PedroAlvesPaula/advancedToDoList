@@ -6,8 +6,10 @@ import { TasksCollection } from '../../../api/tasksCollection';
 import { useTracker } from 'meteor/react-meteor-data';
 import IconButton from '@mui/material/IconButton';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import { useNavigate } from 'react-router-dom';
 
 export const CardsWelcome = () => {
+    const navigate = useNavigate();
     const user = useTracker(() => Meteor.user());
     const tasksRegistered = useTracker(() => {
         if (!user) return 0;
@@ -61,7 +63,7 @@ export const CardsWelcome = () => {
                             alignItems: 'center',
                             justifyContent: 'center',
                             flexDirection: 'column',
-                            backgroundColor: '#8c77fe',
+                            backgroundColor: '#693efe',
                         }}>
                         <CardContent sx={{ 
                                             textAlign: 'center', 
@@ -90,22 +92,35 @@ export const CardsWelcome = () => {
                         alignItems: 'center',
                         justifyContent: 'center',
                         flexDirection: 'column',
-                        backgroundColor: '#8c77fe',
+                        backgroundColor: '#693efe',
                     }}>
-                    <CardContent sx={{ 
-                                        textAlign: 'center', 
-                                        width: '100%',
-                                    }}>
-                        <Typography variant="h6" gutterBottom sx={{color: '#E0E2E6', letterSpacing: '2px'}}>
+                    <CardContent 
+                        sx={{ 
+                            textAlign: 'center', 
+                            width: '100%',
+                            '&:hover': {
+                            backgroundColor: '#4703d1',
+                            cursor: 'pointer'
+                            }
+                        }}
+                        onClick={() => navigate('/tasks')}
+                    >
+                        <Typography variant="h6" gutterBottom sx={{color: '#d9d4ff', letterSpacing: '2px'}}>
                             Listar todas tarefas
                         </Typography>
-                        <Typography variant="h4" color="primary" gutterBottom sx={{color: '#120045'}}>
+                        <Typography 
+                            variant="h4" 
+                            color="primary" 
+                            gutterBottom 
+                            sx={{color: '#120045'}}
+                            component='span'
+                        >
                             <IconButton>
-                                <AssignmentIcon />
+                                <AssignmentIcon fontSize='large'/>
                             </IconButton>
                         </Typography>
-                        <Typography variant="body2" color="text.secondary" sx={{color: '#E0E2E6', letterSpacing: '2px'}}>
-                            clique para lsitar todas as tarefas
+                        <Typography variant="body2" sx={{color: '#d9d4ff', letterSpacing: '2px'}}>
+                            clique para listar todas as tarefas
                         </Typography>
                     </CardContent>
                 </Card>

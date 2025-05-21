@@ -27,7 +27,8 @@ export const NavigationBar = ({ filter }) => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            marginTop: '32px'
+            paddingTop: '32px',
+            backgroundColor: '#d9d4ff'
         }
     }>
         <Box sx={{ width: '90%' }}>

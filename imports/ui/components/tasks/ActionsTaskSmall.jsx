@@ -35,6 +35,7 @@ export const ActionsTaskSmall = ({ userTaskId, id, state, handleDelete, handleEd
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
+        sx={{color: '#d9d4ff'}}
       >
         <MenuIcon></MenuIcon>
       </Button>
@@ -43,8 +44,23 @@ export const ActionsTaskSmall = ({ userTaskId, id, state, handleDelete, handleEd
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
+        sx={{
+            '& .MuiList-root': {padding: 0}
+        }}
+        slotProps={{
+            paper: {
+                sx: {
+                    borderRadius: 0,
+                }
+            }
+        }}
       >
-        <MenuItem onClick={handleClose}>
+        <MenuItem 
+            onClick={handleClose} 
+            sx={{
+                backgroundColor: '#8c77fe', 
+            }}
+        >
             <Tooltip title='Resetar estado'>
                 <IconButton
                     onClick={() => handleReset(id)}
@@ -56,7 +72,8 @@ export const ActionsTaskSmall = ({ userTaskId, id, state, handleDelete, handleEd
                         },
                         width: '24px',
                         height: '24px',
-                        padding: '0'
+                        padding: '0',
+                        color: '#120045'
                     }}
                 >
                     <ReplayIcon></ReplayIcon>
@@ -64,7 +81,12 @@ export const ActionsTaskSmall = ({ userTaskId, id, state, handleDelete, handleEd
             </Tooltip>
         </MenuItem>
 
-        <MenuItem onClick={handleClose}>
+        <MenuItem 
+            onClick={handleClose} 
+            sx={{
+                    backgroundColor: '#8c77fe'
+                }}
+        >
             <Tooltip title='Avançar 1 estado'>
                 <IconButton
                 onClick={() => handleNextState(id, state)}
@@ -76,7 +98,8 @@ export const ActionsTaskSmall = ({ userTaskId, id, state, handleDelete, handleEd
                     },
                     width: '24px',
                     height: '24px',
-                    padding: '0'
+                    padding: '0',
+                    color: '#120045'
                 }}
                 >
                     <ArrowForwardIcon></ArrowForwardIcon>
@@ -85,29 +108,40 @@ export const ActionsTaskSmall = ({ userTaskId, id, state, handleDelete, handleEd
         </MenuItem>
 
         {userTaskId === userId && (
-            <MenuItem onClick={handleClose}>
-                    <Tooltip title='Editar'>
-                        <IconButton
-                            onClick={() => handleEdit(id)}
-                            size='small'
-                            sx={{
-                                marginLeft: '10px',
-                                '&:hover': {
-                                    cursor: 'pointer'
-                                },
-                                width: '24px',
-                                height: '24px',
-                                padding: '0'
-                            }}
-                        >
-                            <EditIcon></EditIcon>
-                        </IconButton>
-                    </Tooltip>
+            <MenuItem 
+                onClick={handleClose} 
+                sx={{
+                        backgroundColor: '#8c77fe'
+                    }}
+            >
+                <Tooltip title='Editar'>
+                    <IconButton
+                        onClick={() => handleEdit(id)}
+                        size='small'
+                        sx={{
+                            marginLeft: '10px',
+                            '&:hover': {
+                                cursor: 'pointer'
+                            },
+                            width: '24px',
+                            height: '24px',
+                            padding: '0',
+                            color: '#120045'
+                        }}
+                    >
+                        <EditIcon></EditIcon>
+                    </IconButton>
+                </Tooltip>
             </MenuItem>
         )}
 
         {userTaskId === userId && (
-            <MenuItem onClick={handleClose}>
+            <MenuItem 
+                onClick={handleClose} 
+                sx={{
+                        backgroundColor: '#8c77fe'
+                    }}
+            >
                 <Tooltip title='Deletar'>
                     <IconButton
                         size='small'
@@ -119,7 +153,8 @@ export const ActionsTaskSmall = ({ userTaskId, id, state, handleDelete, handleEd
                             },
                             width: '24px',
                             height: '24px',
-                            padding: '0'
+                            padding: '0',
+                            color: '#120045'
                         }}
                     >
                         <DeleteIcon></DeleteIcon>

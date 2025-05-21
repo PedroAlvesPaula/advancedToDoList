@@ -42,9 +42,9 @@ export const TemporaryDrawer = ({toggleDrawer, open, buttonsDrawer }) => {
       {user && 
         <Drawer open={open} onClose={toggleDrawer(false)}>
           <Box sx={{ width: 320, 
-            backgroundColor: '#8c77fe', 
+            backgroundColor: '#693efe', 
             height: '100vh', 
-            color: '#E0E2E6',
+            color: '#d9d4ff',
             }} 
             role="presentation" 
             onClick={toggleDrawer(false)}
@@ -60,7 +60,7 @@ export const TemporaryDrawer = ({toggleDrawer, open, buttonsDrawer }) => {
               {user.map((text, index) => (
                 <ListItem key={index} disablePadding>
                   <ListItemIcon sx={{padding: '8px 18px'}}>
-                    {index === 0 ? <AccountCircleIcon sx={{color: '#E0E2E6'}} fontSize='large'/> : <MailIcon sx={{color: '#E0E2E6'}} fontSize='large'/>}
+                    {index === 0 ? <AccountCircleIcon sx={{color: '#d9d4ff'}} fontSize='large'/> : <MailIcon sx={{color: '#E0E2E6'}} fontSize='large'/>}
                   </ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItem>
@@ -68,7 +68,7 @@ export const TemporaryDrawer = ({toggleDrawer, open, buttonsDrawer }) => {
               <ListItem sx={{width: '100%', padding: 0}}>
                   <ListItemButton onClick={() => navigate('/userProfile')}>
                     <ListItemIcon>
-                      <ManageAccountsIcon sx={{color: '#E0E2E6'}} fontSize='large'/>
+                      <ManageAccountsIcon sx={{color: '#d9d4ff'}} fontSize='large'/>
                     </ListItemIcon>
                       <ListItemText primary='Acessar perfil'/>
                   </ListItemButton>
@@ -89,7 +89,7 @@ export const TemporaryDrawer = ({toggleDrawer, open, buttonsDrawer }) => {
               <ListItem sx={{width: '100%', padding: 0}}>
                   <ListItemButton onClick={() => {navigate('/welcome');}}>
                     <ListItemIcon>
-                      <HomeIcon sx={{color: '#E0E2E6'}} fontSize='large'/>
+                      <HomeIcon sx={{color: '#d9d4ff'}} fontSize='large'/>
                     </ListItemIcon>
                       <ListItemText primary='Início'/>
                   </ListItemButton>
@@ -97,7 +97,7 @@ export const TemporaryDrawer = ({toggleDrawer, open, buttonsDrawer }) => {
               <ListItem sx={{width: '100%', padding: 0}}>
                   <ListItemButton onClick={() => {Meteor.logout; navigate('/');}}>
                     <ListItemIcon>
-                      <LogoutIcon sx={{color: '#E0E2E6'}} fontSize='large'/>
+                      <LogoutIcon sx={{color: '#d9d4ff'}} fontSize='large'/>
                     </ListItemIcon>
                       <ListItemText primary='Sair'/>
                   </ListItemButton>
