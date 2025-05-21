@@ -6,8 +6,6 @@ import { TasksCollection } from '/imports/api/tasksCollection';
 import { FormEditTask } from '../components/tasks/FormEditTask';
 import { useTracker } from 'meteor/react-meteor-data';
 
-import { Button } from '@mui/material';
-
 export const EditTask = () => {
 
   const { id } = useParams();
@@ -19,16 +17,10 @@ export const EditTask = () => {
   
   const navigate = useNavigate();
   
-  const [isEditing, setIsEditing] = useState(false);
-  
   const [newTitle, setNewTitle] = useState(task.title || '');
   const [newDescription, setNewDescription] = useState(task.description || '');
   const [newIsPrivate, setNewIsPrivate] = useState(task.isPrivate ? 'Pessoal' : 'Pública');
   const [newState, setNewState] = useState(task.state || '');
-
-  const editControl = () => {
-    setIsEditing(!isEditing);
-  }
   
   const formData = [
     {
@@ -82,10 +74,6 @@ export const EditTask = () => {
 
   return (
     <div>
-      <Button
-        onClick={() => setIsEditing(!isEditing)}
-      >Editar</Button>
-
       <FormEditTask 
         formInformation={formData}
         handleSubmit={updateTask}

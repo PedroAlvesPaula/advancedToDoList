@@ -20,7 +20,6 @@ export const UserInformations = () => {
                 console.error('Erro ao buscar as informações do usuário', error);
             } else {
                 setUser(result);
-                console.log(result);
             }
         });
     }, []);
