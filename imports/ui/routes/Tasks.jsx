@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Meteor } from 'meteor/meteor'
 import { useTracker } from "meteor/react-meteor-data";
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { TasksCollection } from '/imports/api/tasksCollection';
+import { Tracker } from 'meteor/tracker';
+
+import { taskFilter } from '../../api/ReactiveVarFilter.js';
 
 import { ToolbarApplication } from '../components/toolbar/ToolbarApplication';
 import { ListTasks } from '../components/tasks/ListTasks';
@@ -13,6 +16,16 @@ import LogoutIcon from '@mui/icons-material/Logout';
 
 export const Tasks = () => {
   const navigate = useNavigate();
+
+  const tasks = useTracker(() => {
+    const state = taskFilter.get();
+
+    const handler = Meteor.subscribe('tasks', state);
+
+    if(!handler) return [];
+
+    return TasksCollection.find({}, {sort: {createdAt: -1}}).fetch();
+  });
   
   const user = useTracker(() => Meteor.user());
 
@@ -20,12 +33,6 @@ export const Tasks = () => {
   const toggleDrawer = (newOpen) => () => {
       setOpen(newOpen);
   };
-
-  const tasks = useTracker(() => {
-    if (!user) return [];
-    Meteor.subscribe('tasks');
-    return TasksCollection.find({}, {sort: {createdAt: -1}}).fetch();
-  });
 
   const edit = (_id) => {
     navigate(`/editTask/${_id}`);
@@ -81,7 +88,7 @@ export const Tasks = () => {
               open={open} 
               buttonsDrawer={buttonsDrawer}
           />
-          <NavigationBar />
+          <NavigationBar filter={taskFilter}/>
           <ListTasks 
             tasks={tasks} 
             handleEdit={edit}

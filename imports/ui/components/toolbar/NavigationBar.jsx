@@ -8,8 +8,15 @@ import PendingIcon from '@mui/icons-material/Pending';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 
-export const NavigationBar = () => {
+export const NavigationBar = ({ filter }) => {
     const [value, setValue] = useState(0);
+
+    const handleValue = (newValue) => {
+        if(newValue === 1) filter.set('Cadastrada');
+        if(newValue === 2) filter.set('Em andamento');
+        if(newValue === 3) filter.set('Concluída');
+    }
+
   return (
     <div style={
         {
@@ -28,10 +35,13 @@ export const NavigationBar = () => {
                 }}
                     showLabels
                     value={value}
-                    onChange={(event, newValue) => {
-                    setValue(newValue);
-                    }}
+                    onChange={(event, newValue) => handleValue(newValue)}
             >
+                <BottomNavigationAction 
+                    sx={{color: '#fff'}}
+                    label="Todas tarefas" 
+                    icon={<TaskAltIcon fontSize='small' sx={{color: '#fff'}} />} 
+                />
                 <BottomNavigationAction
                     sx={{color: '#fff'}} 
                     label="Cadastradas" 
@@ -46,11 +56,6 @@ export const NavigationBar = () => {
                     sx={{color: '#fff'}}
                     label="Concluídas" 
                     icon={<AssignmentTurnedInIcon fontSize='small' sx={{color: '#fff'}}></AssignmentTurnedInIcon>} 
-                />
-                <BottomNavigationAction 
-                    sx={{color: '#fff'}}
-                    label="Todas tarefas" 
-                    icon={<TaskAltIcon fontSize='small' sx={{color: '#fff'}} />} 
                 />
             </BottomNavigation>
         </Box>
