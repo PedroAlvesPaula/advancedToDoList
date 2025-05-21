@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Meteor } from 'meteor/meteor'
 import { useTracker } from "meteor/react-meteor-data";
 import { useNavigate } from 'react-router-dom';
 import { TasksCollection } from '/imports/api/tasksCollection';
-import { Tracker } from 'meteor/tracker';
 
 import { taskFilter } from '../../api/ReactiveVarFilter.js';
 

@@ -15,6 +15,8 @@ export const NavigationBar = ({ filter }) => {
         if(newValue === 1) filter.set('Cadastrada');
         if(newValue === 2) filter.set('Em andamento');
         if(newValue === 3) filter.set('Concluída');
+
+        setValue(newValue);
     }
 
   return (
