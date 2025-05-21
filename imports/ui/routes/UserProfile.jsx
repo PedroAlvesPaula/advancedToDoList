@@ -20,11 +20,6 @@ export const UserProfile = () => {
       setOpen(newOpen);
   };
 
-  const logout = () => {
-    Meteor.logout();
-    navigate('/');
-  }
-
   const handleClickTarefas = () => {
     navigate('/tasks');
   }
@@ -43,11 +38,6 @@ export const UserProfile = () => {
       click: handleClickTarefas,
       text: 'Tarefas',
       icon: <AssignmentIcon sx={{color: '#E0E2E6'}} fontSize='large'/>
-    },
-    {
-      click: logout,
-      text: 'Sair',
-      icon: <LogoutIcon sx={{color: '#E0E2E6'}} fontSize='large'/>
     },
   ];
 

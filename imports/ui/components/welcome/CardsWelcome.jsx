@@ -1,8 +1,40 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
 
 import { Grid, Card, CardContent, Typography } from "@mui/material";
+import { TasksCollection } from '../../../api/tasksCollection';
+import { useTracker } from 'meteor/react-meteor-data';
 
-export const CardsWelcome = ({ data }) => {
+export const CardsWelcome = () => {
+    const user = useTracker(() => Meteor.user());
+    const tasksRegistered = useTracker(() => {
+        if (!user) return 0;
+
+        Meteor.subscribe('tasks');
+
+        return TasksCollection.find({state: {$eq: 'Cadastrada'}}).count();
+    });
+    const tasksInProgress = useTracker(() => {
+        if (!user) return 0;
+
+        Meteor.subscribe('tasks');
+
+        return TasksCollection.find({state: {$eq: 'Em andamento'}}).count();
+    });
+    const tasksCompleted = useTracker(() => {
+        if (!user) return 0;
+
+        Meteor.subscribe('tasks');
+
+        return TasksCollection.find({state: {$eq: 'Concluída'}}).count();
+    });
+
+    const data = [
+        { title: 'Tarefas cadastradas', number: tasksRegistered, description: 'Total de tarefas cadastradas' },
+        { title: 'Tarefas em andamento', number: tasksInProgress, description: 'Total de tarefas que ainda estão sendo realizadas' },
+        { title: 'Tarefas concluídas', number: tasksCompleted, description: 'Total de tarefa concluídas' },
+    ];
+
   return (
     <>
         <Grid 

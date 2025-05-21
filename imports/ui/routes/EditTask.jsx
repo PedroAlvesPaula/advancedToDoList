@@ -71,7 +71,6 @@ export const EditTask = () => {
       isPrivate: newIsPrivate,
       state: newState,
     };
-    console.log('EditTask newTask', newTask);
     editControl();
     Meteor.callAsync('tasks.updateTask', {task: newTask});
     navigate('/tasks');
