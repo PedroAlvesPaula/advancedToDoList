@@ -111,6 +111,7 @@ export const ListTasks = ({ handleEdit }) => {
               <Divider variant='inset' component='li'/>
             </div>
           ))}
+          
           <div 
             style={{width: '100%', display: 'flex', justifyContent: 'space-between'}}
           >

@@ -46,7 +46,7 @@ export const ActionsTask = ({ userTaskId , id, state, handleDelete, handleEdit, 
                                 marginLeft: '10px',
                                 '&:hover': {
                                     cursor: 'pointer',
-                                    backgroundColor: '#4703d1'
+                                    backgroundColor: 'rgba(71, 3, 209, 0.2)'
                                 },
                                 width: '24px',
                                 height: '24px',
@@ -54,7 +54,7 @@ export const ActionsTask = ({ userTaskId , id, state, handleDelete, handleEdit, 
                                 color: '#d9d4ff'
                             }}
                         >
-                            <ReplayIcon></ReplayIcon>
+                            <ReplayIcon/>
                         </IconButton>
                     </Tooltip>
 
@@ -66,7 +66,7 @@ export const ActionsTask = ({ userTaskId , id, state, handleDelete, handleEdit, 
                             marginLeft: '10px',
                             '&:hover': {
                                 cursor: 'pointer',
-                                backgroundColor: '#4703d1'
+                                backgroundColor: 'rgba(71, 3, 209, 0.2)'
                             },
                             width: '24px',
                             height: '24px',
@@ -74,7 +74,7 @@ export const ActionsTask = ({ userTaskId , id, state, handleDelete, handleEdit, 
                             color: '#d9d4ff'
                         }}
                         >
-                            <ArrowForwardIcon></ArrowForwardIcon>
+                            <ArrowForwardIcon/>
                         </IconButton>
                     </Tooltip>
                     
@@ -89,7 +89,7 @@ export const ActionsTask = ({ userTaskId , id, state, handleDelete, handleEdit, 
                                         marginLeft: '10px',
                                         '&:hover': {
                                             cursor: 'pointer',
-                                            backgroundColor: '#4703d1'
+                                            backgroundColor: 'rgba(71, 3, 209, 0.2)'
                                         },
                                         width: '24px',
                                         height: '24px',
@@ -97,7 +97,7 @@ export const ActionsTask = ({ userTaskId , id, state, handleDelete, handleEdit, 
                                         color: '#d9d4ff'
                                     }}
                                 >
-                                    <EditIcon></EditIcon>
+                                    <EditIcon/>
                                 </IconButton>
                             </Tooltip>
 
@@ -109,7 +109,7 @@ export const ActionsTask = ({ userTaskId , id, state, handleDelete, handleEdit, 
                                         marginLeft: '10px',
                                         '&:hover': {
                                             cursor: 'pointer',
-                                            backgroundColor: '#4703d1'
+                                            backgroundColor: 'rgba(71, 3, 209, 0.2)'
                                         },
                                         width: '24px',
                                         height: '24px',
@@ -117,7 +117,7 @@ export const ActionsTask = ({ userTaskId , id, state, handleDelete, handleEdit, 
                                         color: '#d9d4ff'
                                     }}
                                 >
-                                    <DeleteIcon></DeleteIcon>
+                                    <DeleteIcon/>
                                 </IconButton>
                             </Tooltip>
                         </>
