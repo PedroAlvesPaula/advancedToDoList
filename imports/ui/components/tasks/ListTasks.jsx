@@ -13,7 +13,9 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Typography from '@mui/material/Typography';
 import AssignmentIcon from '@mui/icons-material/Assignment';
-import { Button } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 
 
 export const ListTasks = ({ handleEdit }) => {
@@ -46,7 +48,6 @@ export const ListTasks = ({ handleEdit }) => {
   const deleteTask = (_id) => {
     Meteor.callAsync('tasks.delete', {_id});
   }
-
 
   return ( 
     <>
@@ -110,12 +111,16 @@ export const ListTasks = ({ handleEdit }) => {
               <Divider variant='inset' component='li'/>
             </div>
           ))}
-          <Button onClick={() => setPage((p) => Math.max(1, p-1))} disabled={page === 1}>
-            Anterior
-          </Button>
-          <Button onClick={() => setPage((p) => p + 1)} disabled={tasks.length < limit}>
-            Próxima
-          </Button>
+          <div 
+            style={{width: '100%', display: 'flex', justifyContent: 'space-between'}}
+          >
+            <IconButton sx={{color: '#d9d4ff'}} onClick={() => setPage((p) => Math.max(1, p-1))} disabled={page === 1}>
+              <NavigateBeforeIcon fontSize='large' color='d9d4ff'/>
+            </IconButton>
+            <IconButton sx={{color: '#d9d4ff'}} onClick={() => setPage((p) => p + 1)} disabled={tasks.length < limit}>
+              <NavigateNextIcon fontSize='large'/>
+            </IconButton>
+          </div>
         </List>
       </div>
     </>
