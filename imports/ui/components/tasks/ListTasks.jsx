@@ -25,7 +25,6 @@ export const ListTasks = ({ handleEdit }) => {
   const skip = ((page-1) * limit);
 
   const tasks = useTracker(() => {
-    console.log('ex');
     const state = taskFilter.get();
 
     const handler = Meteor.subscribe('tasks', state, limit, skip);
@@ -36,12 +35,10 @@ export const ListTasks = ({ handleEdit }) => {
   });
 
   const handleNextState = async (id, state) => {
-    Meteor.subscribe('tasks');
     await Meteor.callAsync('tasks.handleNextState', { id: id, state: state });
   }
 
-  const handleReset = async (id) => {
-    Meteor.subscribe('tasks');
+  const handleReset = async (id, state) => {
     await Meteor.callAsync('tasks.resetState', {id: id});
   }
 
@@ -111,7 +108,7 @@ export const ListTasks = ({ handleEdit }) => {
               <Divider variant='inset' component='li'/>
             </div>
           ))}
-          
+
           <div 
             style={{width: '100%', display: 'flex', justifyContent: 'space-between'}}
           >

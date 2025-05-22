@@ -40,7 +40,7 @@ export const ActionsTask = ({ userTaskId , id, state, handleDelete, handleEdit, 
                 <>
                     <Tooltip title='Resetar estado'>
                         <IconButton
-                            onClick={() => handleReset(id)}
+                            onClick={() => handleReset(id, state)}
                             size='small'
                             sx={{
                                 marginLeft: '10px',
