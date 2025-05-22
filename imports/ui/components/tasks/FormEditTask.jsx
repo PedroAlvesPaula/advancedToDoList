@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Button, List, ListItem, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export const FormEditTask = ({
                             formInformation, 
@@ -58,9 +59,9 @@ export const FormEditTask = ({
                     width: '100%',
                     maxWidth: 360,
                     borderRadius: 2,
-                    border: '1px solid',
+                    border: '1px solid #d9d4ff',
                     borderColor: 'divider',
-                    backgroundColor: 'background.paper',
+                    backgroundColor: '#693efe',
                 }}
             >
                 {formInformation.map((element, index) => (  
@@ -71,6 +72,11 @@ export const FormEditTask = ({
                             helperText={element.helperText}
                             variant="standard"
                             sx={{width: '100%'}}
+                            slotProps={{
+                                input: {sx: { color: '#d9d4ff', width: '100%', padding: '0 10px' }},
+                                inputLabel: {sx: { color: '#d9d4ff' }},
+                                formHelperText: {sx: { color: '#d9d4ff' }}
+                            }}
                             onChange={(e) => element.set(e.target.value)}
                             value={element.value}
                         />
@@ -78,16 +84,45 @@ export const FormEditTask = ({
                 ))}
 
                 <ListItem>
-                    <Box sx={{ minWidth: 120 }}>
-                        <FormControl>
-                            <InputLabel id="demo-simple-select-label">Situação</InputLabel>
+                    <Box sx={{ width: '90%' }}>
+                        <FormControl fullWidth sx={{ m: 1, color: '#d9d4ff' }} size="small">
+                            <InputLabel id="demo-simple-select-label"
+                                sx={{ color: '#d9d4ff' }}
+                            >
+                                Situação
+                            </InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 value={selectValueS}
                                 label="Situação"
+                                autoWidth
                                 onChange={(e) => handleSelectValueS(e)}
-                                sx={{width: '100%'}}
+                                IconComponent={(props) => (
+                                    <ExpandMoreIcon {...props} sx={{ color: '#d9d4ff' }} />
+                                )}
+                                sx={{ 
+                                    color: '#d9d4ff', 
+                                    height: '40px', 
+                                    paddingRight: '14px',
+                                    '& .MuiOutlinedInput-notchedOutline': {
+                                            borderColor: '#d9d4ff',
+                                    }, 
+                                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                                        borderColor: '#ffffff',
+                                    },
+                                    '& .MuiSvgIcon-root': {
+                                        color: '#d9d4ff !important',
+                                    }
+                                }}
+                                MenuProps={{
+                                    PaperProps: {
+                                        sx: {
+                                            backgroundColor: '#4703d1',
+                                            color: '#d9d4ff'            
+                                        }
+                                    }
+                                }}
                             >
                                 <MenuItem value={'Cadastrada'}>Cadastrada</MenuItem>
                                 <MenuItem value={'Em andamento'}>Em andamento</MenuItem>
@@ -97,16 +132,45 @@ export const FormEditTask = ({
                     </Box>
                 </ListItem>
                 <ListItem>
-                    <Box sx={{ minWidth: 120 }}>
-                        <FormControl>
-                            <InputLabel id="demo-simple-select-label">Visualização</InputLabel>
+                    <Box sx={{ width: '90%' }}>
+                        <FormControl fullWidth sx={{ m: 1, minWidth: 120, color: '#d9d4ff' }} size="small">
+                            <InputLabel 
+                                id="demo-simple-select-label"
+                                sx={{ color: '#d9d4ff' }}
+                            >
+                                Visualização
+                            </InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 value={selectValueP}
                                 label="Visualização"
                                 onChange={(e) => handleSelectValueP(e)}
-                                sx={{width: '100%'}}
+                                IconComponent={(props) => (
+                                    <ExpandMoreIcon {...props} sx={{ color: '#d9d4ff' }} />
+                                )}
+                                sx={{ 
+                                    color: '#d9d4ff', 
+                                    height: '40px', 
+                                    paddingRight: '14px',
+                                    '& .MuiOutlinedInput-notchedOutline': {
+                                            borderColor: '#d9d4ff',
+                                    }, 
+                                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                                        borderColor: '#ffffff',
+                                    },
+                                    '& .MuiSvgIcon-root': {
+                                        color: '#d9d4ff !important',
+                                    }
+                                }}
+                                MenuProps={{
+                                    PaperProps: {
+                                        sx: {
+                                            backgroundColor: '#4703d1',
+                                            color: '#d9d4ff'            
+                                        }
+                                    }
+                                }}
                             >
                                 <MenuItem value={'Pessoal'}>Pessoal</MenuItem>
                                 <MenuItem value={'Pública'}>Pública</MenuItem>
@@ -114,23 +178,47 @@ export const FormEditTask = ({
                         </FormControl>
                     </Box>
                 </ListItem>
-
-                <Button 
-                    variant='contained' 
-                    size='small' 
-                    sx={{letterSpacing: '2px'}}
-                    onClick={(e) => handleSubmit(e)}
+                
+                <div
+                    style={{
+                        width: '100%',
+                        display: 'flex',
+                        justifyContent: 'space-between'
+                    }}
                 >
-                    {textHandleSunmit}
-                </Button>
-                <Button 
-                    variant='contained' 
-                    size='small' 
-                    sx={{letterSpacing: '2px'}}
-                    onClick={() => returnPage()}
-                >
-                    Voltar
-                </Button>
+                    <Button 
+                        variant='contained' 
+                        size='small' 
+                        sx={{
+                            letterSpacing: '2px', 
+                            margin: '16px', 
+                            color: '#120045',
+                            backgroundColor: '#d9d4ff',
+                            '&:hover': {
+                                backgroundColor: '#b2a6ff' 
+                            }
+                        }}
+                        onClick={() => returnPage()}
+                    >
+                        Voltar
+                    </Button>
+                    <Button 
+                        variant='contained' 
+                        size='small' 
+                        sx={{
+                            letterSpacing: '2px', 
+                            margin: '16px', 
+                            color: '#120045', 
+                            backgroundColor: '#d9d4ff',
+                            '&:hover': {
+                                backgroundColor: '#b2a6ff' 
+                            }
+                        }}
+                        onClick={(e) => handleSubmit(e)}
+                    >
+                        {textHandleSunmit}
+                    </Button>
+                </div>
             </List>
         </Box>
     </div>

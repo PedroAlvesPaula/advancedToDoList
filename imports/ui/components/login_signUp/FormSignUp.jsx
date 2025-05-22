@@ -11,6 +11,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export const FormSignUp = ({ setIsClient }) => {
     
@@ -139,7 +140,23 @@ export const FormSignUp = ({ setIsClient }) => {
                                 value={gender}
                                 label="Gênero"
                                 autoWidth
-                                sx={{ color: '#d9d4ff', height: '40px', paddingRight: '14px' }}
+                                IconComponent={(props) => (
+                                    <ExpandMoreIcon {...props} sx={{ color: '#d9d4ff' }} />
+                                )}
+                                sx={{ 
+                                    color: '#d9d4ff', 
+                                    height: '40px', 
+                                    paddingRight: '14px',
+                                    '& .MuiOutlinedInput-notchedOutline': {
+                                            borderColor: '#d9d4ff',
+                                    }, 
+                                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                                        borderColor: '#ffffff',
+                                    },
+                                    '& .MuiSvgIcon-root': {
+                                        color: '#d9d4ff !important',
+                                    }
+                                }}
                                 MenuProps={{
                                     PaperProps: {
                                         sx: {
