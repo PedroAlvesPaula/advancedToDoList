@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { useTracker } from "meteor/react-meteor-data";
 import { useNavigate } from 'react-router-dom';
@@ -50,6 +50,7 @@ export const Tasks = () => {
               open={open} 
               buttonsDrawer={buttonsDrawer}
           />
+
           <NavigationBar filter={taskFilter}/>
 
           <ListTasks 

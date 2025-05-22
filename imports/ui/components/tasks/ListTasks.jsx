@@ -13,7 +13,7 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Typography from '@mui/material/Typography';
 import AssignmentIcon from '@mui/icons-material/Assignment';
-import { Button, IconButton } from '@mui/material';
+import { IconButton } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 
@@ -25,6 +25,7 @@ export const ListTasks = ({ handleEdit }) => {
   const skip = ((page-1) * limit);
 
   const tasks = useTracker(() => {
+    console.log('ex');
     const state = taskFilter.get();
 
     const handler = Meteor.subscribe('tasks', state, limit, skip);
@@ -36,7 +37,6 @@ export const ListTasks = ({ handleEdit }) => {
 
   const handleNextState = async (id, state) => {
     Meteor.subscribe('tasks');
-
     await Meteor.callAsync('tasks.handleNextState', { id: id, state: state });
   }
 
@@ -45,8 +45,8 @@ export const ListTasks = ({ handleEdit }) => {
     await Meteor.callAsync('tasks.resetState', {id: id});
   }
 
-  const deleteTask = (_id) => {
-    Meteor.callAsync('tasks.delete', {_id});
+  const deleteTask = async (_id) => {
+    await Meteor.callAsync('tasks.delete', {_id});
   }
 
   return ( 
@@ -114,10 +114,28 @@ export const ListTasks = ({ handleEdit }) => {
           <div 
             style={{width: '100%', display: 'flex', justifyContent: 'space-between'}}
           >
-            <IconButton sx={{color: '#d9d4ff'}} onClick={() => setPage((p) => Math.max(1, p-1))} disabled={page === 1}>
+            <IconButton 
+              sx={{
+                color: '#d9d4ff',
+                '&:hover': {
+                  backgroundColor: '#4703d1'
+                }
+              }} 
+              onClick={() => setPage((p) => Math.max(1, p-1))} 
+              disabled={page === 1}
+            >
               <NavigateBeforeIcon fontSize='large' color='d9d4ff'/>
             </IconButton>
-            <IconButton sx={{color: '#d9d4ff'}} onClick={() => setPage((p) => p + 1)} disabled={tasks.length < limit}>
+            <IconButton 
+              sx={{
+                color: '#d9d4ff',
+                '&:hover': {
+                  backgroundColor: 'rgba(71, 3, 209, 0.2)'
+                }
+              }} 
+              onClick={() => setPage((p) => p + 1)} 
+              disabled={tasks.length < limit}
+            >
               <NavigateNextIcon fontSize='large'/>
             </IconButton>
           </div>

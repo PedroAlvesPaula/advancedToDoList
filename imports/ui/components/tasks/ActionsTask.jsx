@@ -45,11 +45,13 @@ export const ActionsTask = ({ userTaskId , id, state, handleDelete, handleEdit, 
                             sx={{
                                 marginLeft: '10px',
                                 '&:hover': {
-                                    cursor: 'pointer'
+                                    cursor: 'pointer',
+                                    backgroundColor: '#4703d1'
                                 },
                                 width: '24px',
                                 height: '24px',
-                                padding: '0'
+                                padding: '0',
+                                color: '#d9d4ff'
                             }}
                         >
                             <ReplayIcon></ReplayIcon>
@@ -63,11 +65,13 @@ export const ActionsTask = ({ userTaskId , id, state, handleDelete, handleEdit, 
                         sx={{
                             marginLeft: '10px',
                             '&:hover': {
-                                cursor: 'pointer'
+                                cursor: 'pointer',
+                                backgroundColor: '#4703d1'
                             },
                             width: '24px',
                             height: '24px',
-                            padding: '0'
+                            padding: '0',
+                            color: '#d9d4ff'
                         }}
                         >
                             <ArrowForwardIcon></ArrowForwardIcon>
@@ -84,11 +88,13 @@ export const ActionsTask = ({ userTaskId , id, state, handleDelete, handleEdit, 
                                     sx={{
                                         marginLeft: '10px',
                                         '&:hover': {
-                                            cursor: 'pointer'
+                                            cursor: 'pointer',
+                                            backgroundColor: '#4703d1'
                                         },
                                         width: '24px',
                                         height: '24px',
-                                        padding: '0'
+                                        padding: '0',
+                                        color: '#d9d4ff'
                                     }}
                                 >
                                     <EditIcon></EditIcon>
@@ -102,11 +108,13 @@ export const ActionsTask = ({ userTaskId , id, state, handleDelete, handleEdit, 
                                     sx={{
                                         marginLeft: '10px',
                                         '&:hover': {
-                                            cursor: 'pointer'
+                                            cursor: 'pointer',
+                                            backgroundColor: '#4703d1'
                                         },
                                         width: '24px',
                                         height: '24px',
-                                        padding: '0'
+                                        padding: '0',
+                                        color: '#d9d4ff'
                                     }}
                                 >
                                     <DeleteIcon></DeleteIcon>
