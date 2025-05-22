@@ -14,7 +14,7 @@ export const CardsWelcome = () => {
     const tasksRegistered = useTracker(() => {
         if (!user) return 0;
 
-        Meteor.subscribe('tasks');
+        Meteor.subscribe('tasksCount');
 
         return TasksCollection.find({state: {$eq: 'Cadastrada'}}).count();
     });

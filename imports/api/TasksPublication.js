@@ -12,11 +12,18 @@ Meteor.publish('tasks', function (state, limit=4, skip=0) {
             {isPrivate: false},
             {userId: this.userId}
         ]
-    }
+    };
 
     if(state){
         query.state = state;
     }
-
+    
     return TasksCollection.find(query, {sort: {createdAt: -1}, limit, skip});
+});
+
+Meteor.publish('tasksCount', function() {
+    return TasksCollection.find({$or: [
+        {isPrivate: false}, {userId: this.userId}
+    ]}, 
+    {sort: {createdAt: -1}});
 });
