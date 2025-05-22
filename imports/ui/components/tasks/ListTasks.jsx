@@ -18,7 +18,7 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 
 
-export const ListTasks = ({ handleEdit }) => {
+export const ListTasks = ({ handleEdit, taskToFind }) => {
   const [page, setPage] = useState(1);
 
   const limit = 4;
@@ -27,7 +27,7 @@ export const ListTasks = ({ handleEdit }) => {
   const tasks = useTracker(() => {
     const state = taskFilter.get();
 
-    const handler = Meteor.subscribe('tasks', state, limit, skip);
+    const handler = Meteor.subscribe('tasks', state, taskToFind, limit, skip);
 
     if(!handler.ready()) return [];
 
@@ -116,7 +116,7 @@ export const ListTasks = ({ handleEdit }) => {
               sx={{
                 color: '#d9d4ff',
                 '&:hover': {
-                  backgroundColor: '#4703d1'
+                  backgroundColor: 'rgba(71, 3, 209, 0.2)'
                 }
               }} 
               onClick={() => setPage((p) => Math.max(1, p-1))} 

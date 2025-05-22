@@ -10,10 +10,14 @@ import { NavigationBar } from '../components/toolbar/NavigationBar.jsx';
 import { TemporaryDrawer } from '../components/drawer/TemporaryDrawer.jsx';
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import CircularProgress from '@mui/material/CircularProgress';
+import { InputAdornment, TextField } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 
 export const Tasks = () => {
   const navigate = useNavigate();
-  
+  const [taskToFind, setTaskToFind] = useState('');
+  const [reRender, setReRender] = useState(0);
+
   const user = useTracker(() => Meteor.user());
 
   const [open, setOpen] = React.useState(false);
@@ -37,6 +41,8 @@ export const Tasks = () => {
     },
   ];
 
+  console.log(taskFilter.get())
+
   return (
     <>
       {user ? (
@@ -51,12 +57,61 @@ export const Tasks = () => {
               buttonsDrawer={buttonsDrawer}
           />
 
-          <NavigationBar filter={taskFilter}/>
+          <NavigationBar filter={taskFilter} setReRender={setReRender}/>
+          <div 
+            style={{
+              width: '100%', 
+              display: 'flex', 
+              justifyContent: 'center',
+              marginTop: '32px'
+            }}
+          >
+            <TextField 
+              onChange={(e) => setTaskToFind(e.target.value)}
+              label={`Pesquise as tarefas ${reRender ? `"${reRender}"` : ''} pelo nome`}
+              slotProps={{
+                input: {
+                  endAdornment: (
+                    <InputAdornment position='end'>
+                      <SearchIcon sx={{color: '#693efe'}}/>
+                    </InputAdornment>
+                  )
+                }
+              }}
+              sx={{
+                width: '80%',
+                '& .MuiOutlinedInput-root': {
+                  '&:hover fieldset': {
+                    borderColor: '#8c77fe',
+                    borderWidth: '1px'
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#693efe',
+                    borderWidth: '2px',
+                  },
+                },
+                '& .MuiInputLabel-root.Mui-focused': {
+                  color: '#4703d1',
+                },
+                '& input': {
+                  color: '#27017d'
+                },
+                '& .MuiInputLabel-root': {
+                  color: '#693efe'
+                },
+                '& .MuiOutlinedInput-root fieldset': {
+                  borderColor: '#693efe'
+                }
+            }}
+            />
+          </div>
 
           <ListTasks 
             handleEdit={edit}
+            taskToFind={taskToFind}
           />
         </>
+        
       ) : (
         <>
           <div style={{height: '100vh', width: '100vw'}}>
