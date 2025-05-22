@@ -1,26 +1,41 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useNavigate, useParams } from 'react-router-dom';
 import { TasksCollection } from '/imports/api/tasksCollection';
 
 import { FormEditTask } from '../components/tasks/FormEditTask';
 import { useTracker } from 'meteor/react-meteor-data';
+import { CircularProgress } from '@mui/material';
 
 export const EditTask = () => {
 
   const { id } = useParams();
+  const [task, setTask] = useState(null)
 
-  const task = useTracker(() => {
-    Meteor.subscribe('tasks');
-    return TasksCollection.findOne({_id: id});
-  });
+  useEffect(() => {
+    if(!id) return;
+
+    Meteor.callAsync('tasks.getTaskById', id)
+    .then((result) => setTask(result))
+    .catch((e) => console.error('Erro ao buscar a tarefa: ', e));
+
+  }, [id]);
   
   const navigate = useNavigate();
   
-  const [newTitle, setNewTitle] = useState(task.title || '');
-  const [newDescription, setNewDescription] = useState(task.description || '');
-  const [newIsPrivate, setNewIsPrivate] = useState(task.isPrivate ? 'Pessoal' : 'Pública');
-  const [newState, setNewState] = useState(task.state || '');
+  const [newTitle, setNewTitle] = useState('');
+  const [newDescription, setNewDescription] = useState('');
+  const [newIsPrivate, setNewIsPrivate] = useState('');
+  const [newState, setNewState] = useState('');
+
+  useEffect(() => {
+    if(task) {
+      setNewTitle(task.title || '');
+      setNewDescription(task.description || '');
+      setNewIsPrivate(task.isPrivate ? 'Pessoal' : 'Pública');
+      setNewState(task.state || '');
+    }
+  }, [task]);
   
   const formData = [
     {
@@ -63,13 +78,32 @@ export const EditTask = () => {
       isPrivate: newIsPrivate,
       state: newState,
     };
-    editControl();
     Meteor.callAsync('tasks.updateTask', {task: newTask});
     navigate('/tasks');
   }
 
   const returnPage = () => {
     navigate('/tasks');
+  }
+
+  if(!task) {
+    return (
+      <>
+        <div style={{height: '100vh', width: '100vw'}}>
+          <div 
+            style={{
+              width: '100%', 
+              height: '100%', 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center'
+            }}
+          >
+            <CircularProgress color="secondary" />
+          </div>
+        </div>
+      </>
+    );
   }
 
   return (

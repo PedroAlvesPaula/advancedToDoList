@@ -21,14 +21,14 @@ export const CardsWelcome = () => {
     const tasksInProgress = useTracker(() => {
         if (!user) return 0;
 
-        Meteor.subscribe('tasks');
+        Meteor.subscribe('tasksCount');
 
         return TasksCollection.find({state: {$eq: 'Em andamento'}}).count();
     });
     const tasksCompleted = useTracker(() => {
         if (!user) return 0;
 
-        Meteor.subscribe('tasks');
+        Meteor.subscribe('tasksCount');
 
         return TasksCollection.find({state: {$eq: 'Concluída'}}).count();
     });

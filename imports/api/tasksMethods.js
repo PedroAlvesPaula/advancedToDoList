@@ -2,12 +2,12 @@ import { TasksCollection } from "./tasksCollection";
 import { Meteor } from 'meteor/meteor';
 
 Meteor.methods({
-    'tasks.insert'(doc){
-        return TasksCollection.insertAsync({...doc, userId: this.userId},);
+    async 'tasks.insert'(doc){
+        return await TasksCollection.insertAsync({...doc, userId: this.userId},);
     },
 
-    'tasks.updateTask'({ task }) {
-        return TasksCollection.updateAsync(task._id, {
+    async 'tasks.updateTask'({ task }) {
+        return await TasksCollection.updateAsync(task._id, {
             $set: {
                 title: task.title,
                 description: task.description,
@@ -18,11 +18,11 @@ Meteor.methods({
         })
     },
 
-    'tasks.delete'({_id}){
-        return TasksCollection.removeAsync(_id);
+    async 'tasks.delete'({_id}){
+        return await TasksCollection.removeAsync(_id);
     },
 
-    'tasks.handleNextState'({id, state}) {
+    async 'tasks.handleNextState'({id, state}) {
         const oldState = state.toLowerCase().replace(/\s+/g, '');
 
         let newState;
@@ -33,16 +33,19 @@ Meteor.methods({
             newState = 'Concluída';
         }
 
-        return TasksCollection.updateAsync(id, {
+        return await TasksCollection.updateAsync(id, {
             $set: {
                 state: newState
             }
         })
     },
 
-    'tasks.resetState'({ id }){
+    async 'tasks.resetState'({ id }){
         const newState = 'Cadastrada';
 
-        return TasksCollection.updateAsync(id, {$set: {state: newState}});
+        return await TasksCollection.updateAsync(id, {$set: {state: newState}});
+    },
+    async 'tasks.getTaskById'(id){
+        return await TasksCollection.findOneAsync(id);
     }
 })

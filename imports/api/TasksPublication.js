@@ -25,8 +25,7 @@ Meteor.publish('tasks', function (state, findTask, limit=4, skip=0) {
 });
 
 Meteor.publish('tasksCount', function() {
-    return TasksCollection.find({$or: [
-        {isPrivate: false}, {userId: this.userId}
-    ]}, 
+    return TasksCollection.find(
+        {$or: [{isPrivate: false}, {userId: this.userId}]}, 
     {sort: {createdAt: -1}});
 });
