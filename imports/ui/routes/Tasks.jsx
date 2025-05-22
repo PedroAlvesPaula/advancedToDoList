@@ -1,9 +1,7 @@
 import React from 'react'
-import { Meteor } from 'meteor/meteor'
+
 import { useTracker } from "meteor/react-meteor-data";
 import { useNavigate } from 'react-router-dom';
-import { TasksCollection } from '/imports/api/tasksCollection';
-
 import { taskFilter } from '../../api/ReactiveVarFilter.js';
 
 import { ToolbarApplication } from '../components/toolbar/ToolbarApplication';
@@ -15,16 +13,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 export const Tasks = () => {
   const navigate = useNavigate();
-
-  const tasks = useTracker(() => {
-    const state = taskFilter.get();
-
-    const handler = Meteor.subscribe('tasks', state);
-
-    if(!handler) return [];
-
-    return TasksCollection.find({}, {sort: {createdAt: -1}}).fetch();
-  });
   
   const user = useTracker(() => Meteor.user());
 
@@ -37,10 +25,6 @@ export const Tasks = () => {
     navigate(`/editTask/${_id}`);
   }
 
-  const deleteTask = (_id) => {
-    Meteor.callAsync('tasks.delete', {_id});
-  }
-
   const addTask = () => {
     navigate('/addTask');
   }
@@ -51,18 +35,7 @@ export const Tasks = () => {
         text: 'Adicionar tarefa',
         icon: <PostAddIcon sx={{color: '#E0E2E6'}} fontSize='large'/>
     },
-  ]
-
-  const handleNextState = async (id, state) => {
-      Meteor.subscribe('tasks');
-
-      await Meteor.callAsync('tasks.handleNextState', { id: id, state: state });
-  }
-
-  const handleReset = async (id) => {
-    Meteor.subscribe('tasks');
-    await Meteor.callAsync('tasks.resetState', {id: id});
-  }
+  ];
 
   return (
     <>
@@ -78,13 +51,10 @@ export const Tasks = () => {
               buttonsDrawer={buttonsDrawer}
           />
           <NavigationBar filter={taskFilter}/>
+
           <ListTasks 
-            tasks={tasks} 
             handleEdit={edit}
-            handleDelete={deleteTask}
-            handleNextState={handleNextState}
-            handleReset={handleReset}
-            />
+          />
         </>
       ) : (
         <>

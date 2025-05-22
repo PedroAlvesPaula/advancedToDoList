@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { ActionsTask } from './ActionsTask';
+import { TasksCollection } from '/imports/api/tasksCollection';
+import { Meteor } from 'meteor/meteor';
+import { taskFilter } from '../../../api/ReactiveVarFilter.js';
+import { useTracker } from "meteor/react-meteor-data";
 
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -9,9 +13,41 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Typography from '@mui/material/Typography';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import { Button } from '@mui/material';
 
 
-export const ListTasks = ({ tasks, handleEdit, handleDelete, handleNextState, handleReset }) => {
+export const ListTasks = ({ handleEdit }) => {
+  const [page, setPage] = useState(1);
+
+  const limit = 4;
+  const skip = ((page-1) * limit);
+
+  const tasks = useTracker(() => {
+    const state = taskFilter.get();
+
+    const handler = Meteor.subscribe('tasks', state, limit, skip);
+
+    if(!handler.ready()) return [];
+
+    return TasksCollection.find({}, {sort: {createdAt: -1}}).fetch();
+  });
+
+  const handleNextState = async (id, state) => {
+    Meteor.subscribe('tasks');
+
+    await Meteor.callAsync('tasks.handleNextState', { id: id, state: state });
+  }
+
+  const handleReset = async (id) => {
+    Meteor.subscribe('tasks');
+    await Meteor.callAsync('tasks.resetState', {id: id});
+  }
+
+  const deleteTask = (_id) => {
+    Meteor.callAsync('tasks.delete', {_id});
+  }
+
+
   return ( 
     <>
       <div 
@@ -62,7 +98,7 @@ export const ListTasks = ({ tasks, handleEdit, handleDelete, handleNextState, ha
                 />
 
                 <ActionsTask 
-                  handleDelete={handleDelete}
+                  handleDelete={deleteTask}
                   handleEdit={handleEdit}
                   handleNextState={handleNextState}
                   handleReset={handleReset}
@@ -74,6 +110,12 @@ export const ListTasks = ({ tasks, handleEdit, handleDelete, handleNextState, ha
               <Divider variant='inset' component='li'/>
             </div>
           ))}
+          <Button onClick={() => setPage((p) => Math.max(1, p-1))} disabled={page === 1}>
+            Anterior
+          </Button>
+          <Button onClick={() => setPage((p) => p + 1)} disabled={tasks.length < limit}>
+            Próxima
+          </Button>
         </List>
       </div>
     </>
