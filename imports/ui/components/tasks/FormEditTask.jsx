@@ -109,7 +109,7 @@ export const FormEditTask = ({
                                             borderColor: '#d9d4ff',
                                     }, 
                                     '&:hover .MuiOutlinedInput-notchedOutline': {
-                                        borderColor: '#ffffff',
+                                        borderColor: '#d9d4ff',
                                     },
                                     '& .MuiSvgIcon-root': {
                                         color: '#d9d4ff !important',
