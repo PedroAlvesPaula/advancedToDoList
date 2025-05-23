@@ -55,22 +55,22 @@ export const NavigationBar = ({ filter, setReRender }) => {
                     onChange={(event, newValue) => handleValue(newValue)}
             >
                 <BottomNavigationAction 
-                    sx={{color: '#fff'}}
+                    className="bottom-nav-btn"
                     label="Todas tarefas" 
                     icon={<TaskAltIcon fontSize='small' sx={{color: '#fff'}} />} 
                 />
                 <BottomNavigationAction
-                    sx={{color: '#fff'}} 
+                    className="bottom-nav-btn"
                     label="Cadastradas" 
                     icon={<AssignmentIcon fontSize='small' sx={{color: '#fff'}}></AssignmentIcon>} 
                 />
                 <BottomNavigationAction
-                    sx={{color: '#fff'}} 
+                    className="bottom-nav-btn"
                     label="Em andamento" 
                     icon={<PendingIcon fontSize='small' sx={{color: '#fff'}}></PendingIcon>} 
                 />
                 <BottomNavigationAction 
-                    sx={{color: '#fff'}}
+                    className="bottom-nav-btn"
                     label="Concluídas" 
                     icon={<AssignmentTurnedInIcon fontSize='small' sx={{color: '#fff'}}></AssignmentTurnedInIcon>} 
                 />
