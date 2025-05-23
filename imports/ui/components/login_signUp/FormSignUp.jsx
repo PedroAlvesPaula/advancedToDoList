@@ -202,7 +202,7 @@ export const FormSignUp = ({ setIsClient }) => {
                         />
                     </div>
                     <div className='submit-button'>
-                        <Button>Cadastrar</Button>
+                        <Button type='submit'>Cadastrar</Button>
                     </div>
                     <div className='isClient-text' onClick={() => navigate('/login')}>
                         <span>Ja é usuário? Clique aqui, e faça login</span>
