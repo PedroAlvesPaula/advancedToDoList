@@ -6,9 +6,7 @@ import { TemporaryDrawer } from '../components/drawer/TemporaryDrawer';
 import { ToolbarApplication } from '../components/toolbar/ToolbarApplication';
 import { UserInformations } from '../components/userProfile/UserInformations';
 
-import HomeIcon from '@mui/icons-material/Home';
 import AssignmentIcon from '@mui/icons-material/Assignment';
-import LogoutIcon from '@mui/icons-material/Logout';
 
 export const UserProfile = () => {
 
@@ -22,10 +20,6 @@ export const UserProfile = () => {
 
   const handleClickTarefas = () => {
     navigate('/tasks');
-  }
-
-  const handleClickHome = () => {
-    navigate('/welcome');
   }
 
   const buttonsDrawer = [
