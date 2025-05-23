@@ -14,7 +14,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useMediaQuery } from '@mui/material';
 
 export const ActionsTask = ({ userTaskId , id, state, handleDelete, handlePreview, handleNextState, handleReset }) => {
-    const user = useTracker(() => Meteor.user());
+    const userId = useTracker(() => Meteor.userId());
 
     const handle = () => {
         handleNextState(id, state);
@@ -29,7 +29,7 @@ export const ActionsTask = ({ userTaskId , id, state, handleDelete, handlePrevie
             isSmallScreen ? (
                 <ActionsTaskSmall 
                     handleDelete={handleDelete}
-                    handleEdit={handlePreview}
+                    handlePreview={handlePreview}
                     handleNextState={handleNextState}
                     handleReset={handleReset}
                     id={id}
@@ -77,30 +77,29 @@ export const ActionsTask = ({ userTaskId , id, state, handleDelete, handlePrevie
                             <ArrowForwardIcon/>
                         </IconButton>
                     </Tooltip>
-                    
-                    {userTaskId === user._id &&
-                        (    
-                        <>
-                            <Tooltip title='Editar'>
-                                <IconButton
-                                    onClick={() => handlePreview(id)}
-                                    size='small'
-                                    sx={{
-                                        marginLeft: '10px',
-                                        '&:hover': {
-                                            cursor: 'pointer',
-                                            backgroundColor: 'rgba(71, 3, 209, 0.2)'
-                                        },
-                                        width: '24px',
-                                        height: '24px',
-                                        padding: '0',
-                                        color: '#d9d4ff'
-                                    }}
-                                >
-                                    <VisibilityIcon/>
-                                </IconButton>
-                            </Tooltip>
+                   
+                    <>
+                        <Tooltip title='Visualizar'>
+                            <IconButton
+                                onClick={() => handlePreview(id)}
+                                size='small'
+                                sx={{
+                                    marginLeft: '10px',
+                                    '&:hover': {
+                                        cursor: 'pointer',
+                                        backgroundColor: 'rgba(71, 3, 209, 0.2)'
+                                    },
+                                    width: '24px',
+                                    height: '24px',
+                                    padding: '0',
+                                    color: '#d9d4ff'
+                                }}
+                            >
+                                <VisibilityIcon/>
+                            </IconButton>
+                        </Tooltip>
 
+                        {userId === userTaskId && 
                             <Tooltip title='Deletar'>
                                 <IconButton
                                     size='small'
@@ -120,9 +119,8 @@ export const ActionsTask = ({ userTaskId , id, state, handleDelete, handlePrevie
                                     <DeleteIcon/>
                                 </IconButton>
                             </Tooltip>
-                        </>
-                        ) 
-                    }
+                        }
+                    </>
                 </>
             )
         }

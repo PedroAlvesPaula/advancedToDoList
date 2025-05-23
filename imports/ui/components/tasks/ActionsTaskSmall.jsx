@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 
-import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ReplayIcon from '@mui/icons-material/Replay';
@@ -12,11 +11,12 @@ import MenuItem from '@mui/material/MenuItem';
 import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 
-export const ActionsTaskSmall = ({ userTaskId, id, state, handleDelete, handleEdit, handleNextState, handleReset }) => {
+export const ActionsTaskSmall = ({ userTaskId, id, state, handleDelete, handlePreview, handleNextState, handleReset }) => {
     const userId = useTracker(() => Meteor.userId());
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
 
     const handleClick = (event) => {
@@ -107,33 +107,32 @@ export const ActionsTaskSmall = ({ userTaskId, id, state, handleDelete, handleEd
             </Tooltip>
         </MenuItem>
 
-        {userTaskId === userId && (
-            <MenuItem 
-                onClick={handleClose} 
-                sx={{
-                        backgroundColor: '#8c77fe'
+        <MenuItem 
+            onClick={handleClose} 
+            sx={{
+                    backgroundColor: '#8c77fe'
+                }}
+        >
+            <Tooltip title='Visualizar'>
+                <IconButton
+                    onClick={() => handlePreview(id)}
+                    size='small'
+                    sx={{
+                        marginLeft: '10px',
+                        '&:hover': {
+                            cursor: 'pointer'
+                        },
+                        width: '24px',
+                        height: '24px',
+                        padding: '0',
+                        color: '#120045'
                     }}
-            >
-                <Tooltip title='Editar'>
-                    <IconButton
-                        onClick={() => handleEdit(id)}
-                        size='small'
-                        sx={{
-                            marginLeft: '10px',
-                            '&:hover': {
-                                cursor: 'pointer'
-                            },
-                            width: '24px',
-                            height: '24px',
-                            padding: '0',
-                            color: '#120045'
-                        }}
-                    >
-                        <EditIcon></EditIcon>
-                    </IconButton>
-                </Tooltip>
-            </MenuItem>
-        )}
+                >
+                    <VisibilityIcon />
+                </IconButton>
+            </Tooltip>
+        </MenuItem>
+        
 
         {userTaskId === userId && (
             <MenuItem 

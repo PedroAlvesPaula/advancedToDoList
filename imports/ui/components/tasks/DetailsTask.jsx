@@ -6,11 +6,14 @@ import { Box, Button, CircularProgress, Paper, Table, TableBody } from '@mui/mat
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
+import { useTracker } from 'meteor/react-meteor-data';
 
 
 export const DetailsTask = ({ id }) => {
     const navigate = useNavigate();
     const [task, setTask] = useState();
+
+    const userId = useTracker(() => Meteor.userId());
 
     useEffect(() => {
 
@@ -140,22 +143,27 @@ export const DetailsTask = ({ id }) => {
                             >
                                 Voltar
                             </Button>
-                            <Button 
-                                onClick={() => navigate(`/editTask/${id}`)}
-                                variant='contained' 
-                                size='small' 
-                                sx={{
-                                    letterSpacing: '2px', 
-                                    margin: '16px', 
-                                    color: '#120045', 
-                                    backgroundColor: '#d9d4ff',
-                                    '&:hover': {
-                                        backgroundColor: '#b2a6ff' 
-                                    }
-                                }}
-                            >
-                                Editar
-                            </Button>
+
+                            {userId === task.userId &&
+                                (
+                                    <Button 
+                                        onClick={() => navigate(`/editTask/${id}`)}
+                                        variant='contained' 
+                                        size='small' 
+                                        sx={{
+                                            letterSpacing: '2px', 
+                                            margin: '16px', 
+                                            color: '#120045', 
+                                            backgroundColor: '#d9d4ff',
+                                            '&:hover': {
+                                                backgroundColor: '#b2a6ff' 
+                                            }
+                                        }}
+                                    >
+                                        Editar
+                                    </Button>
+                                )
+                            }
                         </div>
                     </Box>
                 </Paper>
