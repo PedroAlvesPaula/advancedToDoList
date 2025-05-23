@@ -64,7 +64,31 @@ export const FormAddTask = ({
                             label={element.label}
                             helperText={element.helperText}
                             variant="standard"
-                            sx={{width: '100%'}}
+                            sx={{
+                                width: '100%',
+                                '& .MuiInput-underline:before': {
+                                    borderBottomColor: '#d9d4ff'
+                                },
+                                '& .MuiInput-underline:hover:not(.Mui-disabled):before': {
+                                    borderBottomColor: '#8c77fe',
+                                },
+                                '& .MuiInput-underline:after': {
+                                    borderBottomColor: '#d9d4ff',
+                                },
+                                '& .MuiInputLabel-root': {
+                                    color: '#d9d4ff',
+                                },
+                                '& .MuiInputLabel-root.Mui-focused': {
+                                    color: '#d9d4ff',
+                                },
+                                '& .MuiFormHelperText-root': {
+                                    color: '#d9d4ff',
+                                },
+                                '& input': {
+                                    color: '#d9d4ff',
+                                }
+
+                            }}
                             slotProps={{
                                 input: {sx: { color: '#d9d4ff', width: '100%', padding: '0 10px' }},
                                 inputLabel: {sx: { color: '#d9d4ff' }},
@@ -81,7 +105,12 @@ export const FormAddTask = ({
                         <FormControl fullWidth sx={{ m: 1, minWidth: '120', color: '#d9d4ff' }} size="small">
                             <InputLabel 
                                 id="demo-simple-select-label"
-                                sx={{ color: '#d9d4ff' }}
+                                sx={{
+                                    color: '#d9d4ff',
+                                    '&.Mui-focused': {
+                                        color: '#d9d4ff',
+                                    },
+                                }}
                             >
                                 Visualização
                             </InputLabel>
@@ -107,6 +136,7 @@ export const FormAddTask = ({
                                     },
                                     '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                         borderColor: '#d9d4ff',
+                                        color: '#d9d4ff'
                                     },
                                     '& .MuiSvgIcon-root': {
                                         color: '#d9d4ff !important',
@@ -116,7 +146,18 @@ export const FormAddTask = ({
                                     PaperProps: {
                                         sx: {
                                             backgroundColor: '#693efe',
-                                            color: '#d9d4ff'            
+                                            color: '#d9d4ff',
+                                            '& .MuiMenuItem-root': {
+                                                '&:hover': {
+                                                        backgroundColor: 'rgba(133, 119, 254, 0.3)',
+                                                    },
+                                                '&.Mui-selected': {
+                                                    backgroundColor: 'rgba(71, 3, 209, 0.3)',
+                                                    '&:hover': {
+                                                        backgroundColor:  'rgba(39, 1, 125, 0.3)'
+                                                    }
+                                                }
+                                            }           
                                         },
                                     },
                                 }}

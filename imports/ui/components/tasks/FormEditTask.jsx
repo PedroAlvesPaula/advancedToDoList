@@ -71,7 +71,31 @@ export const FormEditTask = ({
                             label={element.label}
                             helperText={element.helperText}
                             variant="standard"
-                            sx={{width: '100%'}}
+                            sx={{
+                                width: '100%',
+                                '& .MuiInput-underline:before': {
+                                    borderBottomColor: '#d9d4ff'
+                                },
+                                '& .MuiInput-underline:hover:not(.Mui-disabled):before': {
+                                    borderBottomColor: '#8c77fe',
+                                },
+                                '& .MuiInput-underline:after': {
+                                    borderBottomColor: '#d9d4ff',
+                                },
+                                '& .MuiInputLabel-root': {
+                                    color: '#d9d4ff',
+                                },
+                                '& .MuiInputLabel-root.Mui-focused': {
+                                    color: '#d9d4ff',
+                                },
+                                '& .MuiFormHelperText-root': {
+                                    color: '#d9d4ff',
+                                },
+                                '& input': {
+                                    color: '#d9d4ff',
+                                }
+
+                            }}
                             slotProps={{
                                 input: {sx: { color: '#d9d4ff', width: '100%', padding: '0 10px' }},
                                 inputLabel: {sx: { color: '#d9d4ff' }},
@@ -87,7 +111,12 @@ export const FormEditTask = ({
                     <Box sx={{ width: '90%' }}>
                         <FormControl fullWidth sx={{ m: 1, color: '#d9d4ff' }} size="small">
                             <InputLabel id="demo-simple-select-label"
-                                sx={{ color: '#d9d4ff' }}
+                                sx={{
+                                    color: '#d9d4ff',
+                                    '&.Mui-focused': {
+                                        color: '#d9d4ff',
+                                    },
+                                }}
                             >
                                 Situação
                             </InputLabel>
@@ -109,7 +138,12 @@ export const FormEditTask = ({
                                             borderColor: '#d9d4ff',
                                     }, 
                                     '&:hover .MuiOutlinedInput-notchedOutline': {
+                                        borderColor: '#8c77fe',
+                                        borderWidth: '2px'
+                                    },
+                                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                         borderColor: '#d9d4ff',
+                                        color: '#d9d4ff'
                                     },
                                     '& .MuiSvgIcon-root': {
                                         color: '#d9d4ff !important',
@@ -118,10 +152,21 @@ export const FormEditTask = ({
                                 MenuProps={{
                                     PaperProps: {
                                         sx: {
-                                            backgroundColor: '#4703d1',
-                                            color: '#d9d4ff'            
-                                        }
-                                    }
+                                            backgroundColor: '#693efe',
+                                            color: '#d9d4ff',
+                                            '& .MuiMenuItem-root': {
+                                                '&:hover': {
+                                                        backgroundColor: 'rgba(133, 119, 254, 0.3)',
+                                                    },
+                                                '&.Mui-selected': {
+                                                    backgroundColor: 'rgba(71, 3, 209, 0.3)',
+                                                    '&:hover': {
+                                                        backgroundColor:  'rgba(39, 1, 125, 0.3)'
+                                                    }
+                                                }
+                                            }           
+                                        },
+                                    },
                                 }}
                             >
                                 <MenuItem value={'Cadastrada'}>Cadastrada</MenuItem>
@@ -157,7 +202,12 @@ export const FormEditTask = ({
                                             borderColor: '#d9d4ff',
                                     }, 
                                     '&:hover .MuiOutlinedInput-notchedOutline': {
-                                        borderColor: '#ffffff',
+                                        borderColor: '#8c77fe',
+                                        borderWidth: '2px'
+                                    },
+                                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                        borderColor: '#d9d4ff',
+                                        color: '#d9d4ff'
                                     },
                                     '& .MuiSvgIcon-root': {
                                         color: '#d9d4ff !important',
@@ -166,10 +216,21 @@ export const FormEditTask = ({
                                 MenuProps={{
                                     PaperProps: {
                                         sx: {
-                                            backgroundColor: '#4703d1',
-                                            color: '#d9d4ff'            
-                                        }
-                                    }
+                                            backgroundColor: '#693efe',
+                                            color: '#d9d4ff',
+                                            '& .MuiMenuItem-root': {
+                                                '&:hover': {
+                                                        backgroundColor: 'rgba(133, 119, 254, 0.3)',
+                                                    },
+                                                '&.Mui-selected': {
+                                                    backgroundColor: 'rgba(71, 3, 209, 0.3)',
+                                                    '&:hover': {
+                                                        backgroundColor:  'rgba(39, 1, 125, 0.3)'
+                                                    }
+                                                }
+                                            }           
+                                        },
+                                    },
                                 }}
                             >
                                 <MenuItem value={'Pessoal'}>Pessoal</MenuItem>
