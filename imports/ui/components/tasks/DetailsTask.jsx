@@ -44,76 +44,122 @@ export const DetailsTask = ({ id }) => {
     const createdAt = new Date(task.createdAt).toLocaleString('pt-BR'); 
 
     return (
-        <Box display="flex" flexDirection="column" alignItems="center">
-            <Paper elevation={4} sx={{ 
-                                        width: '90%',
-                                        maxWidth: 500, 
-                                        minWidth: 320, 
-                                        margin: 'auto', 
-                                        m: 4, 
-                                        p: 3, 
-                                        backgroundColor: '#7e74f1', 
-                                        color: '#fff', 
-                                        borderRadius: 3, 
-                                    }}>
-                <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
-                    <Typography variant="h5" fontWeight="bold">
-                        {task.title}
-                    </Typography>
-                    
-                    <Table>
-                        <TableBody>
-                            <TableRow width={'100%'}>
-                                <TableCell align='center'>
-                                    Criada por:
-                                </TableCell>
-                                <TableCell align='center'>
-                                    <Typography variant="body1">
-                                        {task.owner}
-                                    </Typography>
-                                </TableCell>
-                            </TableRow>
+        <div
+            style={{
+                height: '100vh',
+                width: '100vw',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+            }}
+        >
+            <Box display="flex" flexDirection="column" alignItems="center">
+                <Paper elevation={4} sx={{ 
+                                            width: '90%',
+                                            maxWidth: 500, 
+                                            minWidth: 320, 
+                                            margin: 'auto', 
+                                            m: 4, 
+                                            p: 3, 
+                                            backgroundColor: '#693efe', 
+                                            color: '#fff', 
+                                            borderRadius: 3, 
+                                        }}>
+                    <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
+                        <Typography variant="h5" fontWeight="bold">
+                            {task.title}
+                        </Typography>
+                        
+                        <Table>
+                            <TableBody>
+                                <TableRow width={'100%'}>
+                                    <TableCell align='center'>
+                                        Criada por:
+                                    </TableCell>
+                                    <TableCell align='center'>
+                                        <Typography variant="body1">
+                                            {task.owner}
+                                        </Typography>
+                                    </TableCell>
+                                </TableRow>
 
-                            <TableRow width={'100%'}>
-                                <TableCell align='center' >
-                                    Descrição:
-                                </TableCell>
-                                <TableCell align='center'>
-                                    <Typography variant="body1">
-                                        {task.description}
-                                    </Typography>
-                                </TableCell>
-                            </TableRow>
+                                <TableRow width={'100%'}>
+                                    <TableCell align='center' >
+                                        Descrição:
+                                    </TableCell>
+                                    <TableCell align='center'>
+                                        <Typography variant="body1">
+                                            {task.description}
+                                        </Typography>
+                                    </TableCell>
+                                </TableRow>
 
-                            <TableRow width={'100%'}>
-                                <TableCell align='center' >
-                                    Criada em:
-                                </TableCell>
-                                <TableCell align='center'>
-                                    <Typography variant="body1">
-                                        {createdAt}
-                                    </Typography>
-                                </TableCell>
-                            </TableRow>
+                                <TableRow width={'100%'}>
+                                    <TableCell align='center' >
+                                        Criada em:
+                                    </TableCell>
+                                    <TableCell align='center'>
+                                        <Typography variant="body1">
+                                            {createdAt}
+                                        </Typography>
+                                    </TableCell>
+                                </TableRow>
 
-                            <TableRow width={'100%'}>
-                                <TableCell align='center' >
-                                    Etapa:
-                                </TableCell>
-                                <TableCell align='center'>
-                                    <Typography variant="body1">
-                                        {task.state}
-                                    </Typography>
-                                </TableCell>
-                            </TableRow>
-                        </TableBody>
-                    </Table>
-                    <Button onClick={() => navigate(`/editTask/${id}`)}>
-                        Editar
-                    </Button>
-                </Box>
-            </Paper>
-        </Box>
-
+                                <TableRow width={'100%'}>
+                                    <TableCell align='center' >
+                                        Etapa:
+                                    </TableCell>
+                                    <TableCell align='center'>
+                                        <Typography variant="body1">
+                                            {task.state}
+                                        </Typography>
+                                    </TableCell>
+                                </TableRow>
+                            </TableBody>
+                        </Table>
+                        <div
+                            style={{
+                                width: '100%',
+                                display: 'flex',
+                                justifyContent: 'space-between'
+                            }}
+                        >
+                            <Button 
+                                onClick={() => navigate('/tasks')}
+                                variant='contained' 
+                                size='small' 
+                                sx={{
+                                    letterSpacing: '2px', 
+                                    margin: '16px', 
+                                    color: '#120045', 
+                                    backgroundColor: '#d9d4ff',
+                                    '&:hover': {
+                                        backgroundColor: '#b2a6ff' 
+                                    }
+                                }}
+                            >
+                                Voltar
+                            </Button>
+                            <Button 
+                                onClick={() => navigate(`/editTask/${id}`)}
+                                variant='contained' 
+                                size='small' 
+                                sx={{
+                                    letterSpacing: '2px', 
+                                    margin: '16px', 
+                                    color: '#120045', 
+                                    backgroundColor: '#d9d4ff',
+                                    '&:hover': {
+                                        backgroundColor: '#b2a6ff' 
+                                    }
+                                }}
+                            >
+                                Editar
+                            </Button>
+                        </div>
+                    </Box>
+                </Paper>
+            </Box>
+        </div>
     );
 }
