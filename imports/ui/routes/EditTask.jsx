@@ -80,7 +80,7 @@ export const EditTask = () => {
   }
 
   const returnPage = () => {
-    navigate('/tasks');
+    navigate(`/viewTask/${id}`);
   }
 
   if(!task) {
