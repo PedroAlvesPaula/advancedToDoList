@@ -42,19 +42,18 @@ body {
 /* estilos navigationBar */
 
 .container-navigation .bottom-nav-btn {
-  color: #ffffff;
+  color: #d9d4ff;
   border-radius: 8px;
   transition: background-color 0.3s ease;
 }
 
-/* hover */
 .container-navigation .bottom-nav-btn:hover {
   background-color: rgba(178, 166, 255, 0.2);
-  color: #ffffff;
+  color: #d9d4ff;
 }
 
-/* selecionado (foco/ativo) */
 .container-navigation .bottom-nav-btn.Mui-selected {
   background-color: rgba(71, 3, 209, 0.3);
-  color: #ffffff;
+  color: #d9d4ff;
+  border-radius: 16px;
 }

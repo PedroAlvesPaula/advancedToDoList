@@ -48,7 +48,8 @@ export const CardsWelcome = () => {
             columnSpacing={{xs: 2, md: 2}}
             rowSpacing={{xs: 4, md: 6}}
             sx={{
-                margin: '32px'
+                margin: '32px',
+                boxSizing: 'border-box'
             }}
         >
             {data.map((item, index) => (

@@ -4,15 +4,14 @@ import { Meteor } from 'meteor/meteor';
 
 import { ActionsTaskSmall } from './ActionsTaskSmall';
 
-import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ReplayIcon from '@mui/icons-material/Replay';
-import {Button, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import { useMediaQuery } from '@mui/material';
 
 export const ActionsTask = ({ userTaskId , id, state, handleDelete, handlePreview, handleNextState, handleReset }) => {
     const user = useTracker(() => Meteor.user());

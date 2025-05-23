@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Meteor } from 'meteor/meteor';
 
-import './FormSignUp.css';
+import './FormSignUpLogin.css';
 import { useNavigate } from 'react-router-dom';
 
 import InputLabel from '@mui/material/InputLabel';
@@ -13,7 +13,7 @@ import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-export const FormSignUp = ({ setIsClient }) => {
+export const FormSignUp = () => {
     
     const [username, setUsername] = useState('');
     const [birth, setBirth] = useState('');
@@ -112,13 +112,19 @@ export const FormSignUp = ({ setIsClient }) => {
                         />
 
                         <FormControl fullWidth sx={{ m: 1, minWidth: 120, color: '#d9d4ff' }} size="small">
-                            <InputLabel 
+                            <InputLabel
                                 id="demo-select-small-label"
-                                sx={{ color: '#d9d4ff' }}
+                                sx={{
+                                        color: '#d9d4ff',
+                                        '&.Mui-focused': {
+                                            color: '#d9d4ff',
+                                        },
+                                    }}
                             >
                                 Gênero
                             </InputLabel>
                             <Select
+                                className='standard-select-todo'
                                 labelId="demo-select-small-label"
                                 id="demo-select-small"
                                 value={gender}
@@ -135,7 +141,12 @@ export const FormSignUp = ({ setIsClient }) => {
                                             borderColor: '#d9d4ff',
                                     }, 
                                     '&:hover .MuiOutlinedInput-notchedOutline': {
-                                        borderColor: '#ffffff',
+                                        borderColor: '#8c77fe',
+                                        borderWidth: '2px'
+                                    },
+                                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                        borderColor: '#d9d4ff',
+                                        color: '#d9d4ff'
                                     },
                                     '& .MuiSvgIcon-root': {
                                         color: '#d9d4ff !important',
@@ -144,10 +155,21 @@ export const FormSignUp = ({ setIsClient }) => {
                                 MenuProps={{
                                     PaperProps: {
                                         sx: {
-                                            backgroundColor: '#4703d1',
-                                            color: '#d9d4ff'            
-                                        }
-                                    }
+                                            backgroundColor: '#693efe',
+                                            color: '#d9d4ff',
+                                            '& .MuiMenuItem-root': {
+                                                '&:hover': {
+                                                        backgroundColor: 'rgba(133, 119, 254, 0.3)',
+                                                    },
+                                                '&.Mui-selected': {
+                                                    backgroundColor: 'rgba(71, 3, 209, 0.3)',
+                                                    '&:hover': {
+                                                        backgroundColor:  'rgba(39, 1, 125, 0.3)'
+                                                    }
+                                                }
+                                            }           
+                                        },
+                                    },
                                 }}
                                 onChange={(e) => setGender(e.target.value)}
                             >

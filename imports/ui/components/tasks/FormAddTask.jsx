@@ -68,11 +68,6 @@ export const FormAddTask = ({
                             sx={{
                                 width: '100%',
                             }}
-                            // slotProps={{
-                            //     input: {sx: { color: '#d9d4ff', width: '100%', padding: '0 10px' }},
-                            //     inputLabel: {sx: { color: '#d9d4ff' }},
-                            //     formHelperText: {sx: { color: '#d9d4ff' }}
-                            // }}
                             onChange={(e) => element.set(e.target.value)}
                             value={element.text}
                         />
@@ -81,8 +76,9 @@ export const FormAddTask = ({
 
                 <ListItem>
                     <Box sx={{ width: '90%' }}>
-                        <FormControl fullWidth sx={{ m: 1, minWidth: '120', color: '#d9d4ff' }} size="small">
-                            <InputLabel 
+                        <FormControl fullWidth sx={{ m: 1, minWidth: 120, color: '#d9d4ff' }} size="small">
+                            <InputLabel
+                                className='standard-inputLabel-select' 
                                 id="demo-simple-select-label"
                                 sx={{
                                     color: '#d9d4ff',
@@ -94,6 +90,7 @@ export const FormAddTask = ({
                                 Visualização
                             </InputLabel>
                             <Select
+                                className='standard-select-todo'
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 value={value}

@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
 
-import './FormLogin.css';
+import './FormSignUpLogin.css';
 
 export const FormLogin = () => {
     const navigate = useNavigate();

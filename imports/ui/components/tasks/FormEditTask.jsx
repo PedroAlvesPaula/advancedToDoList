@@ -82,7 +82,8 @@ export const FormEditTask = ({
                 <ListItem>
                     <Box sx={{ width: '90%' }}>
                         <FormControl fullWidth sx={{ m: 1, color: '#d9d4ff' }} size="small">
-                            <InputLabel id="demo-simple-select-label"
+                            <InputLabel 
+                                id="demo-simple-select-label"
                                 sx={{
                                     color: '#d9d4ff',
                                     '&.Mui-focused': {
@@ -93,6 +94,7 @@ export const FormEditTask = ({
                                 Situação
                             </InputLabel>
                             <Select
+                                className='standard-select-todo'
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 value={selectValueS}
@@ -151,13 +153,19 @@ export const FormEditTask = ({
                 <ListItem>
                     <Box sx={{ width: '90%' }}>
                         <FormControl fullWidth sx={{ m: 1, minWidth: 120, color: '#d9d4ff' }} size="small">
-                            <InputLabel 
+                            <InputLabel
                                 id="demo-simple-select-label"
-                                sx={{ color: '#d9d4ff' }}
+                                sx={{
+                                    color: '#d9d4ff',
+                                    '&.Mui-focused': {
+                                        color: '#d9d4ff',
+                                    },
+                                }}
                             >
                                 Visualização
                             </InputLabel>
                             <Select
+                                className='standard-select-todo'
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 value={selectValueP}

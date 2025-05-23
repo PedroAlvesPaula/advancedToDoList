@@ -35,7 +35,7 @@ export const UserInformations = () => {
                                                     margin: 'auto', 
                                                     m: 4, 
                                                     p: 3, 
-                                                    backgroundColor: '#7e74f1', 
+                                                    backgroundColor: '#693efe', 
                                                     color: '#fff', 
                                                     borderRadius: 3, 
                                                 }}>
@@ -45,7 +45,7 @@ export const UserInformations = () => {
                                     alt="Foto de perfil"
                                     sx={{ width: 100, height: 100 }}
                                 />
-                                <Typography variant="h5" fontWeight="bold">
+                                <Typography variant="h5" fontWeight="bold" color='#d9d4ff'>
                                     {user.username}
                                 </Typography>
                                 
@@ -53,10 +53,10 @@ export const UserInformations = () => {
                                     <TableBody>
                                         <TableRow>
                                             <TableCell align='center' width={'100%'}>
-                                                <EmailIcon />
+                                                <EmailIcon sx={{ color: '#d9d4ff' }}/>
                                             </TableCell>
                                             <TableCell align='center'>
-                                                <Typography variant="body1">
+                                                <Typography variant="body1" color='#d9d4ff'>
                                                     {user.email}
                                                 </Typography>
                                             </TableCell>
@@ -64,10 +64,10 @@ export const UserInformations = () => {
 
                                         <TableRow width={'100%'}>
                                             <TableCell align='center' >
-                                                <CakeIcon />
+                                                <CakeIcon sx={{ color: '#d9d4ff' }}/>
                                             </TableCell>
                                             <TableCell align='center'>
-                                                <Typography variant="body1">
+                                                <Typography variant="body1" color='#d9d4ff'>
                                                     {user.dateOfBirth}
                                                 </Typography>
                                             </TableCell>
@@ -75,10 +75,10 @@ export const UserInformations = () => {
 
                                         <TableRow width={'100%'}>
                                             <TableCell align='center' >
-                                                <Man4Icon />
+                                                <Man4Icon sx={{ color: '#d9d4ff' }}/>
                                             </TableCell>
                                             <TableCell align='center'>
-                                                <Typography variant="body1">
+                                                <Typography variant="body1" color='#d9d4ff'>
                                                     {user.gender}
                                                 </Typography>
                                             </TableCell>
@@ -86,10 +86,10 @@ export const UserInformations = () => {
 
                                         <TableRow width={'100%'}>
                                             <TableCell align='center' >
-                                                <BusinessIcon />
+                                                <BusinessIcon sx={{ color: '#d9d4ff' }} />
                                             </TableCell>
                                             <TableCell align='center'>
-                                                <Typography variant="body1">
+                                                <Typography variant="body1" color='#d9d4ff'>
                                                     {user.companyWorks}
                                                 </Typography>
                                             </TableCell>
