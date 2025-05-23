@@ -9,6 +9,7 @@ import { AddTask } from '../imports/ui/routes/AddTask';
 import { EditTask } from '../imports/ui/routes/EditTask';
 import { UserProfile } from '../imports/ui/routes/UserProfile';
 import { Login } from '../imports/ui/routes/Login';
+import { ViewTask } from '../imports/ui/routes/ViewTask';
 
 Meteor.startup(() => {
 
@@ -43,6 +44,10 @@ Meteor.startup(() => {
     {
       path:"/userProfile",
       element: <UserProfile />
+    },
+    {
+      path:"/viewTask/:id",
+      element: <ViewTask />
     },
   ]);
 

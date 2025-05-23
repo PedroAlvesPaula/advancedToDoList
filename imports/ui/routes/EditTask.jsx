@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useNavigate, useParams } from 'react-router-dom';
-import { TasksCollection } from '/imports/api/tasksCollection';
-
 import { FormEditTask } from '../components/tasks/FormEditTask';
-import { useTracker } from 'meteor/react-meteor-data';
 import { CircularProgress } from '@mui/material';
 
 export const EditTask = () => {

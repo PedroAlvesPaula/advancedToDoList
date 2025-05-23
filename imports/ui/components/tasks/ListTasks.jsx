@@ -18,7 +18,7 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 
 
-export const ListTasks = ({ handleEdit, taskToFind }) => {
+export const ListTasks = ({ handlePreview, taskToFind }) => {
   const [page, setPage] = useState(1);
 
   const limit = 4;
@@ -97,7 +97,7 @@ export const ListTasks = ({ handleEdit, taskToFind }) => {
 
                 <ActionsTask 
                   handleDelete={deleteTask}
-                  handleEdit={handleEdit}
+                  handlePreview={handlePreview}
                   handleNextState={handleNextState}
                   handleReset={handleReset}
                   id={task._id}

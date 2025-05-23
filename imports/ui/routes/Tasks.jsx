@@ -25,8 +25,8 @@ export const Tasks = () => {
       setOpen(newOpen);
   };
 
-  const edit = (_id) => {
-    navigate(`/editTask/${_id}`);
+  const handlePreview = (id) => {
+    navigate(`/viewTask/${id}`);
   }
 
   const addTask = () => {
@@ -40,8 +40,6 @@ export const Tasks = () => {
         icon: <PostAddIcon sx={{color: '#E0E2E6'}} fontSize='large'/>
     },
   ];
-
-  console.log(taskFilter.get())
 
   return (
     <>
@@ -107,7 +105,7 @@ export const Tasks = () => {
           </div>
 
           <ListTasks 
-            handleEdit={edit}
+            handlePreview={handlePreview}
             taskToFind={taskToFind}
           />
         </>

@@ -12,8 +12,9 @@ import {Button, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 
-export const ActionsTask = ({ userTaskId , id, state, handleDelete, handleEdit, handleNextState, handleReset }) => {
+export const ActionsTask = ({ userTaskId , id, state, handleDelete, handlePreview, handleNextState, handleReset }) => {
     const user = useTracker(() => Meteor.user());
 
     const handle = () => {
@@ -29,7 +30,7 @@ export const ActionsTask = ({ userTaskId , id, state, handleDelete, handleEdit, 
             isSmallScreen ? (
                 <ActionsTaskSmall 
                     handleDelete={handleDelete}
-                    handleEdit={handleEdit}
+                    handleEdit={handlePreview}
                     handleNextState={handleNextState}
                     handleReset={handleReset}
                     id={id}
@@ -83,7 +84,7 @@ export const ActionsTask = ({ userTaskId , id, state, handleDelete, handleEdit, 
                         <>
                             <Tooltip title='Editar'>
                                 <IconButton
-                                    onClick={() => handleEdit(id)}
+                                    onClick={() => handlePreview(id)}
                                     size='small'
                                     sx={{
                                         marginLeft: '10px',
@@ -97,7 +98,7 @@ export const ActionsTask = ({ userTaskId , id, state, handleDelete, handleEdit, 
                                         color: '#d9d4ff'
                                     }}
                                 >
-                                    <EditIcon/>
+                                    <VisibilityIcon/>
                                 </IconButton>
                             </Tooltip>
 

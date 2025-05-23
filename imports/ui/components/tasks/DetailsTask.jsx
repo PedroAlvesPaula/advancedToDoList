@@ -1,0 +1,119 @@
+import React, { useEffect, useState } from 'react';
+import { Meteor } from 'meteor/meteor';
+import { useNavigate } from 'react-router-dom';
+
+import { Box, Button, CircularProgress, Paper, Table, TableBody } from '@mui/material';
+import TableCell from '@mui/material/TableCell';
+import TableRow from '@mui/material/TableRow';
+import Typography from '@mui/material/Typography';
+
+
+export const DetailsTask = ({ id }) => {
+    const navigate = useNavigate();
+    const [task, setTask] = useState();
+
+    useEffect(() => {
+
+        if(!id) return;
+
+        Meteor.callAsync('tasks.getTaskById', id)
+        .then((result) => setTask(result))
+        .catch((e) => console.error('Erro ao buscar a tarefa', e)); 
+
+    }, [id]);
+
+    if(!task){
+        return (
+            <>
+                <div style={{height: '100vh', width: '100vw'}}>
+                    <div style={{
+                                    width: '100%', 
+                                    height: '100%', 
+                                    display: 'flex', 
+                                    alignItems: 'center', 
+                                    justifyContent: 'center'
+                                }}
+                    >
+                        <CircularProgress color="secondary" />
+                    </div>
+                </div>
+            </>
+        );
+    }
+
+    const createdAt = new Date(task.createdAt).toLocaleString('pt-BR'); 
+
+    return (
+        <Box display="flex" flexDirection="column" alignItems="center">
+            <Paper elevation={4} sx={{ 
+                                        width: '90%',
+                                        maxWidth: 500, 
+                                        minWidth: 320, 
+                                        margin: 'auto', 
+                                        m: 4, 
+                                        p: 3, 
+                                        backgroundColor: '#7e74f1', 
+                                        color: '#fff', 
+                                        borderRadius: 3, 
+                                    }}>
+                <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
+                    <Typography variant="h5" fontWeight="bold">
+                        {task.title}
+                    </Typography>
+                    
+                    <Table>
+                        <TableBody>
+                            <TableRow width={'100%'}>
+                                <TableCell align='center'>
+                                    Criada por:
+                                </TableCell>
+                                <TableCell align='center'>
+                                    <Typography variant="body1">
+                                        {task.owner}
+                                    </Typography>
+                                </TableCell>
+                            </TableRow>
+
+                            <TableRow width={'100%'}>
+                                <TableCell align='center' >
+                                    Descrição:
+                                </TableCell>
+                                <TableCell align='center'>
+                                    <Typography variant="body1">
+                                        {task.description}
+                                    </Typography>
+                                </TableCell>
+                            </TableRow>
+
+                            <TableRow width={'100%'}>
+                                <TableCell align='center' >
+                                    Criada em:
+                                </TableCell>
+                                <TableCell align='center'>
+                                    <Typography variant="body1">
+                                        {createdAt}
+                                    </Typography>
+                                </TableCell>
+                            </TableRow>
+
+                            <TableRow width={'100%'}>
+                                <TableCell align='center' >
+                                    Etapa:
+                                </TableCell>
+                                <TableCell align='center'>
+                                    <Typography variant="body1">
+                                        {task.state}
+                                    </Typography>
+                                </TableCell>
+                            </TableRow>
+                        </TableBody>
+                    </Table>
+                    <Button onClick={() => navigate(`/editTask/${id}`)}>
+                        Editar
+                    </Button>
+                </Box>
+            </Paper>
+        </Box>
+
+    );
+}
