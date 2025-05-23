@@ -67,40 +67,12 @@ export const FormEditTask = ({
                 {formInformation.map((element, index) => (  
                     <ListItem key={index}>
                         <TextField
+                            className='standard-form-todo'
                             id="standard-helperText"
                             label={element.label}
                             helperText={element.helperText}
                             variant="standard"
-                            sx={{
-                                width: '100%',
-                                '& .MuiInput-underline:before': {
-                                    borderBottomColor: '#d9d4ff'
-                                },
-                                '& .MuiInput-underline:hover:not(.Mui-disabled):before': {
-                                    borderBottomColor: '#8c77fe',
-                                },
-                                '& .MuiInput-underline:after': {
-                                    borderBottomColor: '#d9d4ff',
-                                },
-                                '& .MuiInputLabel-root': {
-                                    color: '#d9d4ff',
-                                },
-                                '& .MuiInputLabel-root.Mui-focused': {
-                                    color: '#d9d4ff',
-                                },
-                                '& .MuiFormHelperText-root': {
-                                    color: '#d9d4ff',
-                                },
-                                '& input': {
-                                    color: '#d9d4ff',
-                                }
-
-                            }}
-                            slotProps={{
-                                input: {sx: { color: '#d9d4ff', width: '100%', padding: '0 10px' }},
-                                inputLabel: {sx: { color: '#d9d4ff' }},
-                                formHelperText: {sx: { color: '#d9d4ff' }}
-                            }}
+                            sx={{ width: '100%' }}
                             onChange={(e) => element.set(e.target.value)}
                             value={element.value}
                         />

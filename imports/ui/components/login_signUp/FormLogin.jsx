@@ -29,29 +29,21 @@ export const FormLogin = () => {
                 <form onSubmit={(e) => submit(e)} className='form-signUp'>
                     <div className='container-input'>
                         <TextField
+                            className='standard-form-todo'
                             label={'Ex: nome@gmail.com'}
                             helperText={'Digite seu email que ja foi cadastrado'}
                             variant="standard"
                             sx={{width: '100%'}}
-                            slotProps={{
-                                input: {sx: { color: '#d9d4ff', width: '100%' }},
-                                inputLabel: {sx: { color: '#d9d4ff', padding: '10px' }},
-                                formHelperText: {sx: { color: '#d9d4ff' }}
-                            }}
                             onChange={(e) => setEmail(e.target.value)}
                         />
 
                         <TextField
+                            className='standard-form-todo'
                             label={'Digite sua senha'}
                             type='password'
                             helperText={'Digite a senha que você cadastrou'}
                             variant="standard"
                             sx={{width: '100%'}}
-                            slotProps={{
-                                input: {sx: { color: '#d9d4ff', width: '100%' }},
-                                inputLabel: {sx: { color: '#d9d4ff', padding: '10px' }},
-                                formHelperText: {sx: { color: '#d9d4ff' }}
-                            }}
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>

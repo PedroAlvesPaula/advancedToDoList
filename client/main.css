@@ -9,20 +9,52 @@ body {
   background-color: #d9d4ff;
 }
 
-.bottom-nav-btn {
+/* text-filds */
+
+.standard-form-todo  .MuiInput-underline:before {
+  border-bottom-color: #d9d4ff
+}
+
+.standard-form-todo .MuiInput-underline:hover:not(.Mui-disabled):before {
+  border-bottom-color: #8c77fe;
+}
+
+.standard-form-todo .MuiInput-underline:after {
+  border-bottom-color: #d9d4ff;
+}
+
+.standard-form-todo .MuiInputLabel-root {
+  color: #d9d4ff;
+}
+
+.standard-form-todo .MuiInputLabel-root.Mui-focused {
+  color: #d9d4ff;
+}
+
+.standard-form-todo .MuiFormHelperText-root {
+  color: #d9d4ff;
+}
+
+.standard-form-todo input {
+  color: #d9d4ff;
+}
+
+/* estilos navigationBar */
+
+.container-navigation .bottom-nav-btn {
   color: #ffffff;
   border-radius: 8px;
   transition: background-color 0.3s ease;
 }
 
 /* hover */
-.bottom-nav-btn:hover {
+.container-navigation .bottom-nav-btn:hover {
   background-color: rgba(178, 166, 255, 0.2);
   color: #ffffff;
 }
 
 /* selecionado (foco/ativo) */
-.bottom-nav-btn.Mui-selected {
+.container-navigation .bottom-nav-btn.Mui-selected {
   background-color: rgba(71, 3, 209, 0.3);
   color: #ffffff;
 }

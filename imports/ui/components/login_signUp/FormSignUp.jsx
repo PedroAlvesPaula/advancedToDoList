@@ -75,55 +75,39 @@ export const FormSignUp = ({ setIsClient }) => {
                 <form onSubmit={(e) => submit(e)} className='form-signUp'>
                     <div className='container-input'>
                         <TextField
+                            className='standard-form-todo'
                             label={'Ex: Pedro da Silva'}
                             helperText={'Digite seu nome'}
                             variant="standard"
                             sx={{width: '100%'}}
-                            slotProps={{
-                                input: {sx: { color: '#d9d4ff', width: '100%' }},
-                                inputLabel: {sx: { color: '#d9d4ff', padding: '10px' }},
-                                formHelperText: {sx: { color: '#d9d4ff' }}
-                            }}
                             onChange={(e) => setUsername(String(e.target.value))}
                         />
 
                         <TextField
+                            className='standard-form-todo'
                             label={'Ex: email@gmail.com'}
                             helperText={'Digite seu email'}
                             variant="standard"
                             sx={{width: '100%', marginBottom: '10px'}}
-                            slotProps={{
-                                input: {sx: { color: '#d9d4ff', width: '100%' }},
-                                inputLabel: {sx: { color: '#d9d4ff', padding: '12px' }},
-                                formHelperText: {sx: { color: '#d9d4ff' }}
-                            }}
                             onChange={(e) => setEmail(e.target.value)}
                         />
 
                         <TextField
+                            className='standard-form-todo'
                             type='date'
                             label={''}
                             helperText={'Escolha sua data de nascimento'}
                             variant="standard"
                             sx={{width: '100%'}}
-                            slotProps={{
-                                input: {sx: { color: '#d9d4ff', width: '100%' }},
-                                inputLabel: {sx: { color: '#d9d4ff', padding: '10px' }},
-                                formHelperText: {sx: { color: '#d9d4ff' }}
-                            }}
                             onChange={(e) => setBirth(e.target.value)}
                         />
 
                         <TextField
+                            className='standard-form-todo'
                             label={'Ex: Itambe'}
                             helperText={'Empresa onde tarbalha atualmente'}
                             variant="standard"
                             sx={{width: '100%', marginBottom: '16px'}}
-                            slotProps={{
-                                input: {sx: { color: '#d9d4ff', width: '100%' }},
-                                inputLabel: {sx: { color: '#d9d4ff', padding: '10px' }},
-                                formHelperText: {sx: { color: '#d9d4ff' }}
-                            }}
                             onChange={(e) => setCompanyWorks(e.target.value)}
                         />
 
@@ -173,31 +157,23 @@ export const FormSignUp = ({ setIsClient }) => {
                         </FormControl>
 
                         <TextField
+                            className='standard-form-todo'
                             label={''}
                             type='file'
                             accept='image/*'
                             helperText={'Seleciona uma foto para o perfil'}
                             variant="standard"
                             sx={{width: '100%', margin: '16px 0 0 0'}}
-                            slotProps={{
-                                input: {sx: { color: '#d9d4ff', width: '100%' }},
-                                inputLabel: {sx: { color: '#d9d4ff', padding: '10px' }},
-                                formHelperText: {sx: { color: '#d9d4ff' }}
-                            }}
                             onChange={(e) => handleImg(e)}
                         />
 
                         <TextField
+                            className='standard-form-todo'
                             label={'Crie uma senha'}
                             type='password'
                             helperText={'Crie uma senha forte'}
                             variant="standard"
                             sx={{width: '100%'}}
-                            slotProps={{
-                                input: {sx: { color: '#d9d4ff', width: '100%' }},
-                                inputLabel: {sx: { color: '#d9d4ff', padding: '10px' }},
-                                formHelperText: {sx: { color: '#d9d4ff' }}
-                            }}
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>

@@ -44,7 +44,7 @@ export const NavigationBar = ({ filter, setReRender }) => {
             backgroundColor: '#d9d4ff'
         }
     }>
-        <Box sx={{ width: '90%' }}>
+        <Box sx={{ width: '90%' }} className='container-navigation'>
             <BottomNavigation
                 sx={{
                     borderRadius: '16px',
